@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理界面</title>
+</head>
+<body>
+<h1>添加用户:devtools11123</h1>
+<form th:action="@{/users/save}" method="post">
+    用户姓名：<input type="text" name="name" /><font th:text="${users.name}" color="red"></font><br/>
+    用户性别：<input type="radio" name="sex" value="1"><label>男</label><input type="radio" name="sex" value="0"/><label>女</label><br/>
+    用户年龄：<input type="text" name="age" /><br/>
+    用户邮箱：<input type="text" name="email"/><br/>
+    用户地址：<select name="address">
+    <option value="江苏">江苏</option>
+    <option value="浙江">浙江</option>
+    <option value="上海">上海</option>
+</select><br/>
+    <input type="submit" value="确定"/><br/>
+</form>
+</body>
+</html>
