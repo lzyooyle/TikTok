@@ -44,8 +44,22 @@ public class AdminController {
         return "/login";
     }
     @RequestMapping("/login_handle")
-    public String login_handle(Model model, String username){
-        model.addAttribute("users",this.adminService.queryByName(username));
-        return "/login";
+    public String login_handle(Admin admin,Model model){
+        try{
+            Admin id = adminService.verifyAdmin(admin.getUsername(),admin.getPassword());
+            if(id==null){
+                //System.out.println(id.getId());
+                System.out.println("用户名或密码错误");
+                model.addAttribute("msg","用户名或密码错误");
+            }else{
+                System.out.println(id.getId());
+                System.out.println("用户登录成功");
+                model.addAttribute("msg","用户登录成功");
+                return "/users.html";
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return "/login.html";
     }
 }
