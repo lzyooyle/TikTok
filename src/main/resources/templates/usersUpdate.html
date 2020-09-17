@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理界面</title>
+</head>
+<body>
+<h1>添加用户</h1>
+<form th:action="@{/users/update}" method="post">
+    <input type="hidden" name="id" th:value="${users.id}">
+    用户姓名：<input type="text" name="name" th:value="${users.name}"/><br/>
+    用户性别：<input type="radio" name="sex" value="1" th:attr="checked=${users.sex==1?true:false}">男
+    <input type="radio" name="sex" value="0" th:attr="checked=${users.sex==0?true:false}"/>女<br/>
+    用户年龄：<input type="text" name="age" th:value="${users.age}"/><br/>
+    用户邮箱：<input type="text" name="email" th:value="${users.email}"/><br/>
+    用户地址：<select name="address">
+    <option selected="selected" value=""></option>
+    <option th:selected="${users.address}=='江苏'" value="江苏">江苏</option>
+    <option th:selected="${users.address}=='浙江'" value="浙江">浙江</option>
+    <option th:selected="${users.address}=='上海'" value="上海">上海</option>
+</select><br/>
+    <input type="submit" value="确定"/><br/>
+</form>
+</body>
+</html>
