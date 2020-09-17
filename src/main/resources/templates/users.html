@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理界面</title>
+</head>
+<body>
+<h1>用户管理</h1>
+<style>
+    td{display:inline-block;}
+</style>
+<label><a href="/users/usersAdd">添加用户</a></label>
+<table border="1">
+    <tr>
+        <td>用户id</td>
+        <td>用户name</td>
+        <td>用户性别</td>
+        <td>用户age</td>
+        <td>用户email</td>
+        <td>用户地址</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="user:${list}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td><span th:if="${user.sex}==1">男</span><span th:if="${user.sex}==0">女</span></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.address}"></td>
+        <td><a th:href="@{/users/updateInfo(id=${user.id})}">修改</a><a th:href="@{/users/delete(id=${user.id})}">删除用户</a></td>
+    </tr>
+</table>
+</body>
+</html>
