@@ -23,4 +23,8 @@ public class AdminServiceImpl implements AdminService {
     public Admin queryByName(String username){
         return this.adminMapper.queryByName(username);
     }
+    @Override
+    public Admin verifyAdmin(String username,String password){
+        return this.adminMapper.verifyAdmin(username,password);
+    }
 }
