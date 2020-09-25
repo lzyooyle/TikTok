@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>用户id</td>
+        <td>用户名称</td>
+        <td>用户性别</td>
+        <td>用户年龄</td>
+        <td>用户邮箱</td>
+        <td>用户地址</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="user:${list}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td><span th:if="${user.sex==1?true:false}">男</span>
+        <span th:if="${user.sex==0?true:false}">女</span></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.address}"></td>
+        <td>
+            <a th:href="@{/user/del(id=${user.id})}">删除</a>
+            <a th:href="@{/user/updateInfo(id=${user.id})}">修改</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
