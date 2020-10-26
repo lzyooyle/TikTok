@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/update" method="post">
+    <input type="hidden" name="id"  th:value="${users.id}"/>
+    <input type="hidden" name="userid" th:value="${users.userid}"/>
+    <input type="hidden" name="userps" th:value="${users.userps}"/>
+    username:<input type="text" name="username" th:value="${users.username}" /><br />
+    password:<input type="text" name="password" th:value="${users.password}" /><br />
+    <input type="submit" value="update" />
+</form>
+</body>
+</html>
