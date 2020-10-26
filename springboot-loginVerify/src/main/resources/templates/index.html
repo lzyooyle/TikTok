@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2 th:text="${name}"></h2>
+<a th:href="@{/add}">add</a>
+<table border="1" style="width:520px">
+    <tr>
+        <td>id</td>
+        <td>username</td>
+        <td>password</td>
+        <td>action</td>
+    </tr>
+    <tr th:each="users:${list}">
+        <td th:text="${users.id}"> </td>
+        <td th:text="${users.username}"></td>
+        <td th:text="${users.password}"></td>
+        <td>
+            <a th:href="@{/updateInfo(id=${users.id})}">update</a>
+            <a th:href="@{/delete(id=${users.id})}">delete</a>
+        </td>
+    </tr>
+</table>
+<ul>
+<li th:if="${currPageNo > 1}">
+    <a th:href="@{/pager(pageIndex = ${currPageNo - 1})}">prev</a>
+</li>
+<li th:each="pageNo : ${#numbers.sequence(1,numOfPages)}">
+    <a th:href="@{/pager(pageIndex = ${pageNo})}" th:if="${pageNo!=currPageNo}" th:text="${pageNo}"></a>
+    <span th:if="${pageNo==currPageNo}" th:text="${pageNo}"></span>
+</li>
+<li th:if="${currPageNo} < ${numOfPages}">
+    <a th:href="@{/pager(pageIndex = ${currPageNo + 1})}">next</a>
+</li>
+</ul>
+<h3 th:text="success"></h3>
+<a href="/logout">logout</a>
+</body>
+</html>
