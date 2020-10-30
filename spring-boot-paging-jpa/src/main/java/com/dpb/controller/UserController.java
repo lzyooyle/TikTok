@@ -54,9 +54,16 @@ public class UserController{
         return "user/userEdit";
     }
     @RequestMapping("/edit")
-    public String edit(User user){
-        userService.edit(user);
-        return "redirect:/list";
+    public String edit(User user, RedirectAttributes attr){
+        boolean verify = userService.verifyLogin(user);
+        if(verify){
+            attr.addAttribute("id",user.getId());
+            System.out.println("username not unique");
+            return "redirect:/toEdit";
+        }else{
+            userService.edit(user);
+            return "redirect:/list";
+        }
     }
     @RequestMapping("/delete")
     public String delete(Long id){
