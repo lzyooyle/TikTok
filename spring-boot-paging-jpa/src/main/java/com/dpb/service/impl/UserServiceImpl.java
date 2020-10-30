@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService{
         List<User> userList = userRepository.findByUserNameOrEmailOrNickName(user.getUserName(),user.getEmail(),user.getNickName());
         return userList.size()>0;
     }
+    @Override
+    public boolean verifyEdit(User user){
+        List<User> userList = userRepository.findByUserNameAndEmailAndNickName(user.getUserName(),user.getEmail(),user.getNickName());
+        return userList.size()>0;
+    }    
 }
