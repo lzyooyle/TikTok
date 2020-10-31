@@ -14,5 +14,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User,Long>{
     User findById(long id);
     void deleteById(long id);
-    List<User> findByUserNameOrEmailOrNickName(String username,String email,String nickname);
+    @Query("select a from User a where a.id <> ?1 and (a.userName = ?2 or a.email =?3 or a.nickName = ?4)")
+    List<User> findIdByUserNameByEmailByNickName(Long id, String username, String email, String nickname);
 }
