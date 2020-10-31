@@ -20,4 +20,5 @@ public interface UserService{
     void edit(User user);
     void delete(long id);
     boolean verifyLogin(User user);
+    boolean verifyEdit(User user);
 }
