@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService{
     }
     @Override
     public boolean verifyEdit(User user){
-        List<User> userList = userRepository.findByUserNameAndEmailAndNickName(user.getUserName(),user.getEmail(),user.getNickName());
+        List<User> userList = userRepository.findIdByUserNameByEmailByNickName(user.getId(),user.getUserName(),user.getEmail(),user.getNickName());
         return userList.size()>0;
     }    
 }
