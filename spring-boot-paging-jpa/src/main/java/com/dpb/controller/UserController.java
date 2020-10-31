@@ -56,13 +56,12 @@ public class UserController{
     public String edit(User user,RedirectAttributes attr){
         boolean verify = userService.verifyEdit(user);
         if(verify){
-            userService.edit(user);
-            return "redirect:/list";
-        }else{
             attr.addAttribute("id",user.getId());
             return "redirect:/toEdit";
+        }else{
+            userService.edit(user);
+            return "redirect:/list";
         }
-
     }
     @RequestMapping("/delete")
     public String delete(Long id){
