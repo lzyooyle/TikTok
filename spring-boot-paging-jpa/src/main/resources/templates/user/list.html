@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+
+</head>
+<table class="table table-hover">
+    <thead>
+    <tr>
+    <th>#</th>
+    <th>userName</th>
+    <th>passWord</th>
+    <th>email</th>
+    <th>nickName</th>
+    <th>regTime</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user:${users}">
+        <th th:text="${userStat.index+1}"></th>
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.passWord}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.nickName}"></td>
+        <td th:text="${user.regTime}"></td>
+        <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>
+        <td><a th:href="@{/toDelete(id=${user.id})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toEdit" th:href="@{/toEdit}" class="btn btn-info">add</a>
+    </div>
+</div>
+<div class="modal-footer no-margin-top">
+    <ul class="pagination pull-right no-margin">
+        <li>
+            <a th:href="'/list?paeNum=0'">first</a>
+        </li>
+        <li th:if="${users.hasPrevious()}">
+            <a th:href="'/list?pageNum='+${users.previousPageable().getPageNumber()}" th:text="prev"></a>
+        </li>
+        <li th:each="pageNum:${#numbers.sequence(0,users.getTotalPages()-1)}">
+            <a th:href="'/list?pageNum='+${pageNum}" th:text="${pageNum+1}" th:if="${pageNum ne users.pageable.getPageNumber()}"></a>
+            <a th:href="'/list?pageNum='+${pageNum}" th:text="${pageNum+1}" th:if="${pageNum eq users.pageable.getPageNumber()}"></a>
+        </li>
+        <li th:if="${users.hasNext()}">
+            <a th:href="'/list?pageNum='+${users.nextPageable().getPageNumber()}" th:text="next"></a>
+        </li>
+        <li>
+            <a th:href="'/list?pageNum='+${users.getTotalPages()-1}" th:text="end"></a>
+        </li>
+    </ul>
+</div>
+<!--<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>userName</th>
+        <th>passWord</th>
+        <th>email</th>
+        <th>nickName</th>
+        <th>regTime</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user:${users}">
+        <th scope="row" th:text="${userStat.index+1}"></th>
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.passWord}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.nickName}"></td>
+        <td th:text="${user.regTime}"></td>
+        <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>
+        <td><a th:href="@{/delete(id=${user.id})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+    <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>
+    </div>
+</div>
+<div class="modal-footer no-margin-top">
+<ul class="pagination pull-right no-margin">
+    <li><a th:href="'/list?pageNum=0'">first</a></li>
+    <li th:if="${users.hasPrevious()}">
+        <a th:href="'/list?pageNum='+${users.previousPageable().getPageNumber()}" th:text="prev"></a>
+    </li>
+    <li th:each="pageNum:${#numbers.sequence(0,users.getTotalPages()-1)}">
+        <a th:href="'/list?pageNum='+${pageNum}" th:text="${pageNum+1}" th:if="${pageNum ne users.pageable.getPageNumber()}"></a>
+        <a th:href="'/list?pageNum='+${pageNum}" th:text="${pageNum+1}" th:if="${pageNum eq users.pageable.getPageNumber()}"></a>
+    </li>
+    <li th:if="${users.hasNext()}">
+        <a th:href="'/list?pageNum='+${users.nextPageable().getPageNumber()}" th:text="next"></a>
+    </li>
+    <li>
+        <a th:href="'/list?pageNum='+${users.getTotalPages()-1}">end</a>
+    </li>
+</ul>
+
+
+
+
+
+</body>
+</html>
+
