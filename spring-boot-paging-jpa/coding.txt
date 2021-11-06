@@ -109,5 +109,12 @@ export default class Demo extends React.Component {
 }
 
 ============================================================
+appDiv.style.border="solid 1px #f00"
+//1.创建script标签
+const script=document.createElement('script');
+//2.设置标签的src属性
+script.src="http://www.baidu.com";
+//3.将script插入到文档中
+document.body.appendChild(script);
 ============================================================
 ============================================================
