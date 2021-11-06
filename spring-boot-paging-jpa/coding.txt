@@ -1,0 +1,62 @@
+package domain;
+import java.util.*;
+public class HelloWorld {
+
+    public static void main(String[] args) {
+        TreeSet set = new TreeSet();
+        set.add(new User("jack",18));
+        set.add(new User("mark",19));
+        set.add(new User("tony",21));
+        set.add(new User("pony",16));
+        set.add(new User("lucy",18));
+        set.add(new User("jerry",17));
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
+
+}
+class User implements Comparable{
+    private String name;
+    private int age;
+    public User(){
+
+    }
+    public User(String name,int age){
+        this.name=name;
+        this.age=age;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+    public int getAge(){
+        return this.age;
+    } 
+    public void setAge(int age){
+        this.age=age;
+    }
+    @Override
+    public String toString(){
+        return this.name+","+this.age;
+    }
+    @Override
+    public int compareTo(Object o){
+        if(o instanceof User){
+            User user=(User)o;
+            int compare=this.name.compareTo(user.name);
+            if(compare!=0){
+                return compare;
+            }else{
+                return Integer.compare(this.age,user.age);
+            }
+        }else{
+            System.out.println("输入的类型不匹配");
+        }
+        return 0;
+    }
+}
+============================================================
