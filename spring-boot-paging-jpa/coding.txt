@@ -164,6 +164,36 @@ export default class Demo extends React.Component {
 }
 
 ============================================================
+
+<template>
+<div v-show="true">
+数字：{{name}}&nbsp;<button @click="name++">自增1</button>
+<div v-if="name===1">Angular</div>
+<div v-else-if="name===2">React</div>
+<div v-else-if="name===3">Vue</div>
+<div v-else>哈哈</div>
+</div>
+</template>
+
+<script>
+export default {
+  name: 'HelloWorld',
+
+  data() {
+    return{
+      name: 1
+    }
+  },
+  methods: {
+    Add() {
+      this.name++
+    }
+  },
+  mounted() {
+      this.Add();
+  }
+};
+</script>
 ============================================================
 ============================================================
 ============================================================
