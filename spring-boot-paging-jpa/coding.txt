@@ -127,3 +127,46 @@ document.body.appendChild(script);
         :style="{fontSize:xxx}"其中xxx是动态值。
         :style="[a,b]"其中a,b是样式对象。
 ============================================================
+import React from 'react';
+import './style.css';
+
+export default class Demo extends React.Component {
+  //展示左侧输入框的数据
+  showData = () => {
+    const { input1 } = this;
+    alert(input1.value);
+  };
+  //展示右侧输入框的数据
+  showData2 = () => {
+    const { input2 } = this;
+    alert(input2.value);
+  };
+  render() {
+    return (
+      <div>
+        //ref将input所在的节点放入回调函数，将节点放在实例对象上，并起个名字叫input1
+        <input
+          ref={c => this.input1 = c}
+          type="text"
+          placeholder="点击按钮提交数据"
+        />
+        &nbsp;
+        <button onClick={this.showData}>点击我提示左侧的数据</button>&nbsp;
+        <input
+          ref={c => this.input2 = c}
+          onBlur={this.showData2}
+          type="text"
+          placeholder="失去焦点提交数据"
+        />
+      </div>
+    );
+  }
+}
+
+============================================================
+============================================================
+============================================================
+============================================================
+============================================================
+============================================================
+============================================================
