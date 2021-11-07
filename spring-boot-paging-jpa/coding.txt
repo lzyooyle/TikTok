@@ -236,5 +236,9 @@ select * from docs where name like '__$_%' ESCAPE '$'
 value:指定为形参赋值的请求参数的参数名
 required:设置是否必须传输此请求参数，默认值为true
 defaultValue:不管required属性值为true或false,当value所指定的请求参数没有传输或传输的值为""时，则使用默认值为形参赋值
+@RequestParam(value="user_name",required=false,defalutValue="hehe")
 ============================================================
+每次只要有请求进入Tomcat服务器，Tomcat服务器就会把请求过来的HTTP协议信息解析好封装到Request对象中。
+然后传递到service方法（doGet和doPost）中给我们使用。我们可以通过HttpServletRequest对象，获取到所有请求的
+信息。
 ============================================================
