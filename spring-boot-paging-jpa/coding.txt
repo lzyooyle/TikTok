@@ -612,23 +612,7 @@ ReactDOM.render(
 	document.getElementById('example')
 );
 </script>	
-================================================================================	
-请求行：
-	1、请求的方式	GET
-	2、请求的资源路径	/06_servlet/a.html
-	3、请求的协议的版本号	HTTP/1.1
 
-请求头：
-Accept：告诉服务器，客户端可以接收的数据类型
-Accept-Language：告诉服务器客户端可以接收的语言类型
-	zh_CN	中文中国
-	en_US	英文美国
-User-Agent：就是浏览器的信息
-Accept-Encoding：告诉服务器，客户端可以接收的数据编码（压缩）格式
-Host：表示请求的服务器ip和端口号
-Connection：告诉服务器请求连接如何处理
-	Keep-Alive	告诉服务器回传数据不要马上关闭，保持一小段时间的连接
-	Closed	马上关闭	
 ================================================================================	
 
 返回一个文件
@@ -664,26 +648,7 @@ response.send(__dirname+'/index.html')
             }
         }
     })
-    </script>
-================================================================================		
-
-删除数组元素
-vm.classAttr.shift()
-添加数组元素
-vm.classAttr.push('atguigu1')
-================================================================================		
-一个数据表对应一个java类
-
-表中的一条记录对应java类的一个对象
-
-表中的一个字段对应java类的一个属性
-================================================================================	
-
-针对于表的字段名与类的属性名不相同的情况：
-
-1.必须声明sql时，使用类的属性名来命名字段的别名
-2.使用ResultSetMetaData时，需要使用getColumnLabel()来替换getColumnName()，获取列的别名
-说明：如果sql中没有给字段起别名，getColumnLabel()获取的就是列名	
+    </script>	
 ================================================================================	
 #input返回的是字符串类型
 age=input("请输入你的年龄：")
@@ -720,20 +685,6 @@ app.all("/",(request,response)=>{
 	//函数在客户端已经定义好
         response.send(`handle(${str})`);
 });	
-================================================================================		
-
-请求体，发送给服务器的数据
-
-请求头：
-Referer：表示请求发起时，浏览器地址栏中的地址（从哪来）
-Content-Type：表示发送的数据的类型
-	application/x-www-form-urlencoded
-		表示提交的数据格式是：name=value&name=value，然后对其进行url编码
-		url编码是把非英文内容转换为：%xx%xx
-	mutipart/form-data
-		表示以多段的形式提交数据给服务器（以流的形式提交，用于上传）
-Content-Length：表示发送的数据的长度
-Cache-Control 表示如何控制缓存 no-cache不缓存
 ================================================================================		
 package domain;
 import java.util.*;
@@ -797,23 +748,6 @@ class User implements Comparable{
     }
 }
 ============================================================
-相应内容HTTP协议
-相应行：
-    1.响应的协议：HTTP/1.1
-    2.响应的状态码：200
-    3.响应的状态描述符：OK
-响应头：
-    Server：表示服务器的信息,apache
-    Content-Type:表示响应的数据类型
-    Content-Length:响应体的长度
-    Date:请求响应的时间（这是格林威治时间）
-============================================================
-常用响应码说明：
-    200：表示请求成功
-    302：表示重定向
-    404：表示请求服务器已经收到了，但是你要的数据不存在（请求地址错误）
-    500：表示服务器已经收到请求，但是服务器内部错误（代码错误）
-============================================================
 import React from 'react';
 import './style.css';
 
@@ -836,7 +770,7 @@ export default class Demo extends React.Component {
         <button onClick={this.showData}>点击我提示左侧的数据</button>&nbsp;
         <input
           ref="input2"
-          onBlur={this.showData2}
+          onB	lur={this.showData2}
           type="text"
           placeholder="失去焦点提交数据"
         />
@@ -947,19 +881,6 @@ export default {
         特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
     3.备注：使用v-if的时候，元素可能无法获取到，而使用v-show一定可以获取到。       
 ============================================================
-#查询员工名称：第二个字符为e，第四个字符为r
-select * from docs where name like "_e_r%"
-#查询员工名称：第三个字符为_的员工名
-select * from docs where name like '__$_%' ESCAPE '$' 
-============================================================
-常用的命令：
-    dir 列出当前目录下的所有文件
-    cd 目录名 进入到指定的目录
-    md 目录名 创建一个文件夹
-    rd 目录名 删除一个目录名
-目录：
-    . 表示当前目录
-    .. 表示上一级目录
 环境变量：
     当我们在命令行窗口打开一个文件，或调用一个程序时，
         系统会首先在当前目录下寻找文件程序，如果找到了则直接打开
@@ -978,4 +899,73 @@ defaultValue:不管required属性值为true或false,当value所指定的请求�
 每次只要有请求进入Tomcat服务器，Tomcat服务器就会把请求过来的HTTP协议信息解析好封装到Request对象中。
 然后传递到service方法（doGet和doPost）中给我们使用。我们可以通过HttpServletRequest对象，获取到所有请求的
 信息。
+============================================================
+#应用场景 会爬取一个列表返回给我们
+#循环一个列表
+a_list=['周杰伦','林俊杰','王力宏'];
+
+#遍历列表中的元素
+for i in a_list:
+	print(i)
+
+#判断列表中的元素的个数	
+print(len(a_list))	
+
+for i in range(len(a_list)):
+	print(i)
+============================================================
+HttpServletRequest类的常用方法
+	getRequestURI() 获取请求的资源路径
+	getRequestURL() 获取请求的统一资源定位符（绝对路径）
+	gerRemoteHost()	获取客户端的ip地址
+	getHeader()		获取请求头
+	getParameter()	获取请求参数
+	getParameterValues()	获取请求的参数（多个值的时候使用）
+	getMethod()		获取请求的方式GET 或 POST
+	getAttribute(key)		获取域数据
+	getRequestDispatcher()	获取请求转发对象
+============================================================
+项目描述
+1）此项目为一个前后台分离的后台管理的SPA，包括前端PC应用和后端应用
+2）包括用户管理/商品分类管理/商品管理/权限管理等功能模块
+3）前端：使用React全家桶+Antd+Axios+ES6+Webpack等技术
+4）后端：使用Node+Express+Mongdb等技术
+5）采用模块化、组件化、工程化的模式开发
+============================================================
+<div id="example"></div>
+<script type="text/babel">
+class Demo extends React.Component{
+	state={isHot:false}
+	showInfo = ()=>{
+		let {input1} = this;
+		alert(input1.value);
+	}
+	changeWeather = ()=>{
+		let {isHot} = this.state
+		this.setState({isHot:!isHot})
+	}
+	saveInfo = (c)=>{
+		this.input1 = c
+		console.log("@")
+	}
+	render(){
+		let {isHot}=this.state;
+		return (
+		  <div>
+			<h1>今天天气{isHot?'炎热':'寒冷'}</h1>		  
+			{/*<input ref={this.input1=(c)=>{this.input1=c;console.log("@")}} type="text" placeholder="点击按钮提交数据" />*/}
+			<input ref={this.saveInfo} type="text" placeholder="点击按钮提交数据" />
+			&nbsp;
+			<button onClick={this.showInfo}>点击我提示输入的数据</button>&nbsp;
+			<button onClick={this.changeWeather}>点击我改变天气</button>
+		  </div>
+		)
+	}
+}
+ReactDOM.render(
+	<Demo/>,
+	document.getElementById('example')
+);
+</script>
+============================================================
 ============================================================
