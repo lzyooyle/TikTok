@@ -1,93 +1,3 @@
-Vue键盘事件
-
-<div id="app">
-  <input type="text" @keydown="showInfo" />
-</div>
-
-<script>
-Vue.config.keyCodes.huiche=98
-new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue.js!'
-  },
-	methods:{
-		showInfo(e){
-			console.log(e.key+","+e.keyCode)
-			console.log(e.target.value)
-		}
-	}
-})
-</script>
-================================================================================	
-
-Vue 点击事件限制
-<!--
-	prevent:阻止默认事件（常用）
-	stop:阻止事件冒泡（常用）
-	once:事件只触发一次（常用）
--->
-<div id="app">
-  <div @click="show">
-	  <a href="http://www.baidu.com" @click.stop.prevent="show">点击我</a>
-	  </div>
-</div>
-
-<script>
-	let num=0;
-new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue.js!'
-  },
-	methods:{
-		show(){
-			alert(num++);
-		}
-	}
-})
-</script>		
-================================================================================	
-React state属性
-
-<script type="text/babel">
-//1.创建组件
-class Weather extends React.Component{
-	//构造器调用几次？ ---1次
-	constructor(props){
-		super(props)
-		//初始化状态
-		this.state={isHot:true,wind:'微风'}
-		//解决changeWeather中的this指向问题
-		this.changeWeather=this.changeWeather.bind(this)
-	}
-	//render调用几次？ --- 1+n次 1是初始化的那次，n是状态更新的次数
-	render(){
-		//读取状态
-		let {isHot,wind}=this.state
-		return <h1 onClick={this.changeWeather}>今天的天气{isHot?'炎热':'寒冷'},{wind}</h1>
-	}
-	//changeWeather调用几次？ --- 点几次调几次
-	changeWeather(){
-		//changeWeather放在哪里？ --- Weather的原型对象上，供实例使用
-		//由于changeWeather是作为onClick的回调，所有不是通过实例调用的，是直接调用
-		//类中的方法默认开启了局部严格模式，所以changeWeather中的this为undefined
-		let {isHot}=this.state
-		//严重注意：状态必须通过setState进行更新，且更新是一种合并，不是替换
-		this.setState({isHot:!isHot})
-		//严重注意：状态(state)不可直接更改，下面这行就是直接更改！！！
-		//this.state.isHot=!isHot //这是错误的写法
-		console.log(this)
-	}
-}
-//渲染组件到页面
-ReactDOM.render(  
-	<Weather/>,
-	document.getElementById('example')
-);
-</script>
-
-================================================================================	
 
 React state简写
 <script type="text/babel">
@@ -129,43 +39,7 @@ btns[0].onclick=function(){
 			isSending=false;
 		}
 	}
-}
-================================================================================
-
-Vue 计算属性
-    <div id="app">
-        <p><input type="text" v-model="firstname" /><br />
-            <input type="text" v-model="lastname"/></p>	
-            {{fullname}}
-    </div>
-    <script>
- const vm=new Vue({
-  el: '#app',
-  data: {
-	  firstname:'jack',
-	  lastname:'lucy',
-    message: 'Hello Vue.js!'
-  },
-	computed:{
-		fullname:{
-            //get有什么作用？当有人读取fullname时,get就会被调用，且返回值作为fullname的值
-            //get什么时候调用？1.初次读取fullname时。2.所依赖的数据发生变化时
-			get(){
-				console.log("get被调用了")
-				return this.firstname+"-"+this.lastname;
-			},
-            //set什么时候调用？当fullname被修改时
-			set(value){
-				console.log('set',value)
-				const arr=value.split("-")
-				this.firstname=arr[0]
-				this.lastname=arr[1]
-			}		
-		}
-	}
-})
-    </script>	
-	
+}	
 ================================================================================	
 Vue:计算属性简写
 	computed:{
@@ -685,99 +559,7 @@ app.all("/",(request,response)=>{
 	//函数在客户端已经定义好
         response.send(`handle(${str})`);
 });	
-================================================================================		
-package domain;
-import java.util.*;
-public class HelloWorld {
-
-    public static void main(String[] args) {
-        TreeSet set = new TreeSet();
-        set.add(new User("jack",18));
-        set.add(new User("mark",19));
-        set.add(new User("tony",21));
-        set.add(new User("pony",16));
-        set.add(new User("lucy",18));
-        set.add(new User("jerry",17));
-        Iterator iterator = set.iterator();
-        while(iterator.hasNext()){
-            System.out.println(iterator.next());
-        }
-    }
-
-}
-class User implements Comparable{
-    private String name;
-    private int age;
-    public User(){
-
-    }
-    public User(String name,int age){
-        this.name=name;
-        this.age=age;
-    }
-    public String getName(){
-        return this.name;
-    }
-    public void setName(String name){
-        this.name=name;
-    }
-    public int getAge(){
-        return this.age;
-    } 
-    public void setAge(int age){
-        this.age=age;
-    }
-    @Override
-    public String toString(){
-        return this.name+","+this.age;
-    }
-    @Override
-    public int compareTo(Object o){
-        if(o instanceof User){
-            User user=(User)o;
-            int compare=this.name.compareTo(user.name);
-            if(compare!=0){
-                return compare;
-            }else{
-                return Integer.compare(this.age,user.age);
-            }
-        }else{
-            System.out.println("输入的类型不匹配");
-        }
-        return 0;
-    }
-}
 ============================================================
-import React from 'react';
-import './style.css';
-
-export default class Demo extends React.Component {
-  //展示左侧输入框的数据
-  showData = () => {
-    const { input1 } = this.refs;
-    alert(input1.value);
-  };
-  //展示右侧输入框的数据
-  showData2 = () => {
-    const { input2 } = this.refs;
-    alert(input2.value);
-  };
-  render() {
-    return (
-      <div>
-        <input ref="input1" type="text" placeholder="点击按钮提交数据" />
-        &nbsp;
-        <button onClick={this.showData}>点击我提示左侧的数据</button>&nbsp;
-        <input
-          ref="input2"
-          onB	lur={this.showData2}
-          type="text"
-          placeholder="失去焦点提交数据"
-        />
-      </div>
-    );
-  }
-}
 
 ============================================================
 appDiv.style.border="solid 1px #f00"
@@ -970,9 +752,72 @@ postId关联文章id author关联name
 json-server --watch db.json
 
 ============================================================
+添加元素的几个方法：
+
+append 在末尾添加元素
+
+insert 在指定位置插入元素
+
+extend 合并两个列表
 ============================================================
+//1. 一定要初始化
+//const A;
+//2. 一般常量使用大写（潜规则）
+//const a = 100;
+//3. 常量的值不能修改
+//4. 块儿级作用域
+{
+  const PLAYER = 'UZI'
+}
+//5. 对于数组和对象的元素修改，不算做对常量的修改，不会报错
+const TEAM=['UZI','MXLG',"Ning","Letme"];
+TEAM.push('Meiko')
+console.log(TEAM)
 ============================================================
+
+npm init 取名 webpack-test
+
+全局安装：npm i webpack webpack-cli -g
+
+本地安装：npm i webpack webpack-cli -D
+
+index.js: webpack入口起点文件
+
+1. 运行指令
+	开发环境：webpack ./src/index.js -o ./build/built.js --mode=development
+	webpack会以 ./src/index.js 为入口文件开始打包，打包后输出到 ./build/built.js
+	整体打包环境，是开发环境
+	生产环境：webpack ./src/index.js -o ./build/built.js --mode=production
+	webpack会以 ./src/index.js 为入口文件开始打包，打包后输出到 ./build/built.js
+	整体打包环境，是生产环境
+2. 结论：
+	1. webpack能处理js/json资源，不能处理css/img等其他资源
+	2. 生产环境和开发环境将ES6模块化编译成浏览器能识别的模块化~
+	3. 生产环境比开发环境多一个压缩js代码
+
+import data from './data.json'
+console.log(data)           
 ============================================================
+
+SELECT * FROM `user` WHERE NAME = '1' OR ' and password = '=1 OR '1' = '1'
 ============================================================
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.9.1/axios.js"></script>
+    <button onclick="testGet()">get</button>
+    <button onclick="testPost()">post</button>
+    <script>
+        function testGet() {
+            axios.get("http://localhost:3000/posts/1")
+            .then(response=>{
+                console.log("/posts get", response.data)
+            })
+        }
+        function testPost(){
+	        axios.post("http://localhost:3000/posts",{"title":"json-server3","author":"typicode3"})
+	        .then(response=>{
+		    console.log('/posts post', response.data)
+	    })
+}
+    </script>
 ============================================================
 ============================================================
