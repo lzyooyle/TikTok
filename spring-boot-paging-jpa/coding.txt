@@ -1,122 +1,5 @@
 
-React state简写
-<script type="text/babel">
-class Weather extends React.Component{
-	state={'isHot':true,'wind':'微风'}
-	render(){
-		let {isHot,wind}=this.state
-		return <h1 onClick={this.changeWeather}>今天的天气{isHot?'炎热':'寒冷'}，{wind}</h1>
-	}
-	//自定义给方法---要用赋值语句的形式+箭头函数
-	changeWeather = ()=>{
-		let {isHot}=this.state
-		this.setState({'isHot':!isHot})
-	}
-}
-ReactDOM.render(
-	<Weather/>,
-	document.getElementById('example')
-);
-</script>
-================================================================================	
 
-Ajax 标识变量,防止多次重复点击
-const btns=document.querySelectorAll('button');
-let x = null;
-//标识变量
-let isSending=false; //是否在发送AJAX请求
-btns[0].onclick=function(){
-	//判断标识变量
-	if(isSending) x.absort(); // 如果正在发送，则取消该请求
-	x=new XMLHttpRequest();
-	//修改 标识变量的值
-	isSending=true;
-	x.open("GET","http://127.0.0.1:8080/delay");
-	x.send();
-	x.onreadystatechange = function(){
-		if(x.readyState===4) {
-			//修改标识变量
-			isSending=false;
-		}
-	}
-}	
-================================================================================	
-Vue:计算属性简写
-	computed:{
-        //完整写法
-		fullname(){
-            console.log("get被调用了");
-            return this.firstname+"-"+this.lastname
-		}
-	}
-================================================================================	
-React:实例化多个对象
-<div id="example"></div>
-<div id="example1"></div>
-<div id="example2"></div>
-<script type="text/babel">
-class Person extends React.Component{
-	render(){
-		const {name,age,sex}=this.props	
-		return <h1>{name}-{age}-{sex}</h1>
-	}
-}
-ReactDOM.render(
-	<Person name="jack" age="18" sex="男"/>,
-	document.getElementById('example')
-);
-ReactDOM.render(
-	<Person name="lucy" age="19" sex="女"/>,
-	document.getElementById('example1')
-);
-ReactDOM.render(
-	<Person name="mark" age="18" sex="男"/>,
-	document.getElementById('example2')
-);
-</script>
-================================================================================	
-Ajax jquery get post 请求
-    <div class="container">
-        <button class="btn btn_primary">GET</button>
-        <button class="btn btn_danger">POST</button>
-        <button class="btn btn_info">通用型方法ajax</button>
-    </div>
-    <script>
-        $("button").eq(0).click(function(){
-            $.get("http://127.0.0.1:1666/",{a:100,b:200},function(data){
-                console.log(data);
-            },"json")
-        })
-        $("button").eq(1).click(function(){
-            $.post("http://127.0.0.1:1666/",{a:100,b:200},function(data){
-                console.log(data);
-            },"json")
-        })
-       $("button").eq(2).click(function(){
-            $.ajax({
-                //url
-                url:"http://127.0.0.1:1666/",
-                //参数
-                data:{a:100,b:200},
-                //请求类型
-                type:'GET',
-                //响应体结果
-                dataType:'json',
-                //成功的回调
-                success:function(data){
-                    console.log(data);
-                },
-                //超时时间
-                timeout:2000,
-                //失败的回调
-                error:function(){
-                    console.log("出错啦！！");
-                }
-            })
-
-        })		
-    </script>
-================================================================================	
 Js 展开一个数组
 let arr1=[1,3,5,7,9]
 let arr2=[2,4,6,8,10]
@@ -138,138 +21,10 @@ let person2={...person}
 person.name="jerry"
 console.log(person2)
 console.log(person)
-================================================================================	
-React 监视属性
-<div id="app">
-  <p>今天的天气{{info}}</p>
-	<button @click="changeWeather">改变天气</button>
-</div>
-
-<script>
-const vm=new Vue({
-  el: '#app',
-  data: {
-    isHot:true
-  },
-	computed:{
-		info(){
-			return this.isHot?'炎热':'寒冷'
-		}
-	},
-	methods:{
-		changeWeather(){
-			this.isHot=!this.isHot
-		}
-	}
-})
-vm.$watch('isHot',{
-	immediate:true, //初始化时让handler调用一下
-	//handler什么时候调用？当isHot发生改变时
-	handler(newValue,oldValue){
-		console.log('isHot被修改了',newValue,oldValue)
-	}
-})
-</script>
 
 ================================================================================	
-Ajax axios
-    <script>
-        let btn = document.querySelector("button")
-        axios.defaults.baseURL="http://127.0.0.1:1666"
-        btn.onclick=function(){
-            axios.get('/',{
-                params:{
-                    id:100,
-                    vip:7                    
-                },             
-            })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.error(err); 
-            })
-        }
-        </script>
-================================================================================	
-React 属性限制
-<div id="example"></div>
-<div id="example1"></div>
-<div id="example2"></div>
-<script type="text/babel">
-class Person extends React.Component{
-	render(){
-		const {name,age,sex}=this.props	
-		return <h1>{name}-{age}-{sex}</h1>
-	}
-}
-//对标签属性进行类型，必要性的限制
-Person.propTypes={
-	name: PropTypes.string.isRequired, //限制name必传，且为字符串
-	sex: PropTypes.string,	//限制sex为字符串
-	age: PropTypes.number,	//限制age为数值
-	speak: PropTypes.func	//限制speak为函数
-}
-//指定默认标签属性值
-Person.defaultProps={
-	sex:'男',
-	age:18
-}
-ReactDOM.render(
-	<Person name="jack" />,
-	document.getElementById('example')
-);
-ReactDOM.render(
-	<Person name="lucy" age="19" sex="女"/>,
-	document.getElementById('example1')
-);
-const p = {name:'老刘',age:18,sex:'女'}
-ReactDOM.render(
-	<Person {...p}/>,
-	document.getElementById('example2')
-);
-</script>
-================================================================================	
-Vue中的watch默认不监测对象内部值的改变（一层）
 
-配置deep:true可以监测对象内部值改变（多层）
 
-Vue自身可以监测对象内部值的改变，但Vue提供的watch默认不可以
-
-使用watch时根据数据的具体结构，决定是否采用深度监视
-
-================================================================================	
-<div id="app">
-  <p>{{ message }}</p>
-	<button @click="numbers.a++">add</button>{{numbers.a}}
-</div>
-
-<script>
-new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue.js!',
-	  numbers:{
-	  	a:1
-	  }
-  },
-	watch:{
-		//监视多级结构中某个属性的变化
-		'numbers.a':{
-			handler(){
-				//console.log("a被改变了")
-			}
-		},
-		//监视多级结构中所有属性的变化
-		numbers:{
-			deep:true,
-			handler(){
-				console.log("numbers被改变了")
-			}
-		}
-	}
-})
-</script>
 ================================================================================	
 
 Sql：查询条件拼接
@@ -332,46 +87,7 @@ HashSet底层：数组+链表的结构
 
 如果该列的值为null
 SELECT IFNULL(photo,0) AS '信息' FROM `customers`
-================================================================================	
-<div id="app">
-  <p @click="changeWeather">{{ message }}{{isHot?'炎热':'寒冷'}}</p>
-</div>
 
-<script>
-const vm=new Vue({
-  el: '#app',
-  data: {
-    message: '今天天气',
-	  isHot:true
-  },
-	methods:{
-		changeWeather(){
-			this.isHot=!this.isHot
-		}
-	},
-	watch:{
-		//正常写法
-		isHot:{
-			handler(newValue,oldValue){
-				//console.log('isHot被修改了：',newValue,oldValue)
-			}
-		},
-		//简写		
-		isHot(newValue,oldValue){
-			//console.log('isHot被修改了：',newValue,oldValue)
-		}
-	}
-})
-//正常写法
-vm.$watch('isHot',{
-	handler(newValue,oldValue){
-		//console.log('isHot被修改了：',newValue,oldValue)
-	}
-})
-vm.$watch('isHot',function(newValue,oldValue){
-	console.log('isHot被修改了：',newValue,oldValue)
-})
-</script>
 ================================================================================	
 
 ServletContext是一个接口，它表示Servlet上下文对象
@@ -396,34 +112,6 @@ computed和watch之间的区别
 1.所有被Vue管理的函数，最好写成普通函数，这样this的指向才是vm 或 组件实例对象
 2.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数，Promise的回调函数），最好写成箭头函数
    这样this的指向才是vm 或 组件实例对象	
-================================================================================	
-<div id="app">
-	姓：<input type="text" v-model="firstname" /><br />
-	名：<input type="text" v-model="lastname" /><br />
-	{{fullname}}
-</div>
-
-<script>
-new Vue({
-  el: '#app',
-  data: {
-    firstname:'张',
-	 lastname:'三',
-	  fullname:'张-三'
-  },
-	watch:{
-		firstname(val){
-			setTimeout(()=>{
-				this.fullname= val+'-'+this.lastname	
-			},1000)
-
-		},
-		lastname(val){
-			this.fullname= this.firstname+'-'+val
-		}
-	}
-})
-</script>
 ================================================================================	
 
    public Customer mysql_con(String sql,Object ...args) throws Exception{
@@ -655,55 +343,7 @@ HttpServletRequest类的常用方法
 3）前端：使用React全家桶+Antd+Axios+ES6+Webpack等技术
 4）后端：使用Node+Express+Mongdb等技术
 5）采用模块化、组件化、工程化的模式开发
-============================================================
-  <div id="app">
-    <!-- 遍历数组 -->
-    <h2>人员信息</h2>
-    <ul>
-      <li v-for="(p,index) in persons" :key="index">
-        {{p.name}}-{{p.age}}
-      </li>
-    </ul>
-    <!--遍历对象-->
-    <h2>汽车信息</h2>
-    <ul>
-      <li v-for="(value,k) of car" :key="k">
-        {{k}}-{{value}}
-      </li>
-    </ul>
-    <!--遍历字符串-->
-    <h2>字符信息</h2>
-    <ul>
-      <li v-for="(char,index) of str" :key="index">
-        {{char}}-{{index}}
-      </li>
-    </ul>
-    <!--遍历指定次数-->
-    <ul>
-      .<li v-for="(number,index) of 5" :key="index">
-        {{number}}-{{index}}
-      </li>
-    </ul>
-  </div>
-  
-  <script>
-  new Vue({
-    el: '#app',
-    data: {
-      persons: [
-        {name:'zhangsan',age:19},
-        {name:'lisi',age:18},
-        {name:'wang',age:20}        
-      ],
-      car:{
-        name:'奥迪A8',
-        price:'70万',
-        color:'黑色'
-      },
-      str:'hello'
-    }
-  })
-  </script> 
+
 ============================================================
 v-for指令：
 	1.用于展示列表数据
@@ -820,4 +460,167 @@ SELECT * FROM `user` WHERE NAME = '1' OR ' and password = '=1 OR '1' = '1'
 }
     </script>
 ============================================================
+面试题：react、vue中的key有什么作用？(key的内部原理)
+
+1. 虚拟DOM中的key的作用：
+	key是由虚拟DOM对象的标识，当状态中的数据发生变化时，Vue会根据【新数据】生成【新的虚拟DOM】
+	随后Vue进行【新虚拟DOM】与【旧虚拟DOM】的差异比较，比较规则如下：
+
+2.对比规则：
+	(1). 旧虚拟DOM中找到了与新虚拟DOM相同的key：
+		若虚拟DOM中的内容没变，直接使用之前的真实DOM!
+		若虚拟DOM中的内容变了，则生成新的真实DOM，然后替换掉页面中之前的真实DOM。
+
+	(2). 旧虚拟DOM中未找到与新虚拟DOM相同的key
+		创建新的真实DOM，随后渲染到页面
+
+3. 用index作为key可能会引发的问题：
+	1. 若对数据进行：逆序添加、逆序删除等破坏顺序操作：
+			会产生没有必要的真实DOM更新 ==> 界面效果没问题，但效率低。
+
+	2. 如果结构中还包括输入类的DOM：
+			会产生错误DOM更新 ==> 界面有问题。
+
+4. 开发中如何选择key?：
+	1. 最好使用每条数据的唯一的标识作为key，比如id、手机号、身份证号、学号等唯一值。
+	2. 如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，
+		使用index作为key是没有问题的。
+============================================================
+关键字 in
+
+含义：判断某字段的值是否属于in列表中某一项
+特点：
+	使用in提高语句简洁度
+	in列表的值类型必须一致或兼容
+============================================================
+除了解决Statement的拼串、sql问题之外，PreparedStatement还有哪些好处呢？
+1. PreparedStatement可以操作Blob的数据，而Statement做不到
+2. PreparedStatement可以实现更高效率的批量操作
+============================================================
+获取长度：len
+
+查找内容：find 如果存在，则返回改内容在字符串中的第一次出现的索引值，否则返回-1
+
+判断：startswith，endswith 判断字符串以谁开头、结尾
+
+计算出现次数：count 
+
+替换内容：replace 
+
+切割字符串：split
+
+修改大小写：upper，lower
+
+空格处理：strip
+============================================================
+    <div id="example"></div>
+    <script type="text/babel">
+        class Demo extends React.Component{
+            //React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点，该容器时“专人专用”的
+            myRef1=React.createRef()
+            myRef2=React.createRef()
+            showInfo=()=>{
+                alert(this.myRef1.current.value);
+            }
+            showData=()=>{
+                alert(this.myRef2.current.value);
+            }
+            render(){
+                return(
+                    <div>
+                        <input ref={this.myRef1} type='text' placeholder='请输入数据'/>
+                        <button onClick={this.showInfo}>点击显示数据</button>
+                        <input onBlur={this.showData} ref={this.myRef2} type='text' placeholder='失去焦点显示数据'/>
+                        </div>
+                )
+            }
+        }
+    ReactDOM.render(<Demo/>,document.getElementById('example'))
+    </script>
+============================================================
+ps.execute()
+如果执行的是查询操作，有返回结果，则此方法返回true
+如果执行的是增、删、改操作，没有返回结果，则此方法返回false
+============================================================
+git 常用基本命令
+
+git config --global user.name "username" //配置用户名
+
+git config --global user.email "xx@gmail.com" //配置邮箱
+
+git init //初始化生成一个本地仓库
+
+git add //添加到暂存区
+
+git commit -m "message" //提交到本地仓库
+
+git remote add origin url //关联到远程仓库
+============================================================
+
+Vue:计算属性实现搜索功能 //#region //#endregion
+  <div id="app">
+    <input v-model='keyword' type='text' placeholder='请输入您想查找的人'>
+    <ul v-for="p in fillPerson">
+      {{p.id}}-{{p.name}}-{{p.age}}-{{p.sex}}
+    </ul>
+  </div>
+  
+  <script>
+  //计算属性实现搜索功能
+  const vm=new Vue({
+    el: '#app',
+    data: {
+      persons:[
+        {id:'001',name:'马冬梅',age:'45',sex:'女'},
+        {id:'002',name:'周冬雨',age:'34',sex:'女'},
+        {id:'003',name:'周杰伦',age:'45',sex:'男'},
+        {id:'004',name:'温兆伦',age:'61',sex:'男'},
+      ],
+      keyword:'',
+      fillPerson:[]  	  
+    },
+    watch:{
+      #keyword:{
+        immediate:true,
+        handler(val){
+          this.fillPerson=#this.persons.filter((p)=>{
+            return p.name.#indexOf(val) !== -1
+          })
+        }
+      }
+    },	
+    computed:{
+      fillPerson(){
+          return this.persons.filter((p)=>{
+              return p.name.indexOf(this.keyword)!==-1
+          })
+      }
+    }
+  })
+
+  </script>
+============================================================
+1. 通过onXxx属性指定事件处理函数（注意大小写）
+	a. React使用的是自定义（合成）事件，而不是使用的原生DOM事件 ---为了更好的兼容性
+	b. React中的事件是通过事件委托方式处理的（委托给组件最外层的元素） ---为了更高效
+2. 通过event.target得到发生时间的DOM元素对象 --- 不要过度使用ref
+============================================================
+
+//1. 数组的解构
+const F4=['小沈阳','刘能','赵四','宋小宝']
+let [xiao,liu,zhao,song]=F4
+console.log(xiao)
+
+//2. 对象的解构
+const zhao={
+    name:'赵本山',
+    age:68,
+    xiaopin:function(){
+        console.log("我可以演小品")
+    }
+}
+let {xiaopin}=zhao
+xiaopin()
+
+
 ============================================================
