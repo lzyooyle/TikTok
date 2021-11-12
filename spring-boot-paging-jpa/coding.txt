@@ -22,32 +22,7 @@ person.name="jerry"
 console.log(person2)
 console.log(person)
 
-================================================================================	
 
-
-================================================================================	
-
-Sql：查询条件拼接
-
-SELECT CONCAT(NAME,email) AS '信息' FROM `customers`
-================================================================================	
-#格式化输出
-#scrapy框架的时候 excel文件 mysql redis
-name = '红浪漫晶哥'
-age=18
-# %s代表的是字符串 %d代表的是数值
-print("大家好，我叫%s，今年%d"%(name,age))
-================================================================================	
-
-SpringMVC支持ant风格的路径
-
-?：表示任意的单个字符
-
-*：表示任意的0个或多个字符
-
-**：表示任意的一层或多层目录
-
-注意：在使用**时，只能使用/**/xxx的方式
 
 ================================================================================	
 HashSet添加元素的过程
@@ -68,161 +43,11 @@ jdk 8 ：原来的元素在数组中，指向元素a
 
 HashSet底层：数组+链表的结构
 
-================================================================================	
-        //执行，并返回结果集
-        ResultSet result = ps.executeQuery();
-        //处理结果集，next判断是否有下一条数据，如果有则移动指针
-        if(result.next()){
-            //获取当前这条数据的各个字段值
-            int id = result.getInt(1);
-            String name = result.getString(2);
-            String email = result.getString(3);
-            java.sql.Date birth = result.getDate(4);
-            //方式三：将数据封装成一个对象（推荐）
-            Customer customer = new Customer(id, name, email, birth);
-            //5.资源的关闭
-            System.out.println(customer);
-        }
-================================================================================	
-
-如果该列的值为null
-SELECT IFNULL(photo,0) AS '信息' FROM `customers`
-
-================================================================================	
-
-ServletContext是一个接口，它表示Servlet上下文对象
-
-一个web工程，只有一个ServletContext对象实例
-
-ServletContext是web工程部署启动的时候创建，在web工程停止的时候销毁
-
-ServletContext是一个域对象，域对像可以像Map一样存取数据，存数据：setAttribute，取数据：getAttribute，删除数据：removeAttribute
-================================================================================	
-向Set中添加的数据，其所在的类一定要重写hashCode()和equals()
-
-重写的hashCode()和equals()尽可能保持一致：相等的对象必须具有相等的散列码
-================================================================================
-
-computed和watch之间的区别
-
-1.computd能完成的功能，watch都可以完成
-2.watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作
-
-两个重要的小原则
-1.所有被Vue管理的函数，最好写成普通函数，这样this的指向才是vm 或 组件实例对象
-2.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数，Promise的回调函数），最好写成箭头函数
-   这样this的指向才是vm 或 组件实例对象	
-================================================================================	
-
-   public Customer mysql_con(String sql,Object ...args) throws Exception{
-        Connection conn = getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        for(int i = 0; i < args.length; i++){
-            ps.setObject(i+1,args[i]);
-        }
-		//执行，获取结果集
-        ResultSet rs = ps.executeQuery();
-        //获取结果集的元数据：ResultSetMetaData
-        ResultSetMetaData rsmd = rs.getMetaData();
-        //通过ResultSetMetaData获取结果集中的列数
-        int count = rsmd.getColumnCount();
-        if(rs.next()){
-            Customer cust = new Customer();
-            //处理结果集一行数据中的每一列
-            for (int i = 0; i < count; i++) {
-                //获取列值：通过ResultSet
-                Object columnValue = rs.getObject(i + 1);
-
-                //获取每个列的列名:通过ResultSetMetaData
-                String columnName = rsmd.getColumnName(i + 1);
-
-                //给cust对象指定的columnName属性，赋值为columnValue：通过反射
-                Field field = Customer.class.getDeclaredField(columnName);
-                field.setAccessible(true);
-                field.set(cust,columnValue);
-            }
-            return cust;
-        }
-        rs.close();
-        closeResource(conn,ps);
-        return null;
-    }
-================================================================================	
-<div id="example"></div>
-<script type="text/babel">
-function Person(props){
-	const {name,age,sex}=props
-	return (
-		<ul>
-			<li>姓名：{name}</li>
-			<li>性别：{sex}</li>
-			<li>年龄：{age}</li>
-		</ul>
-	)
-}
-Person.propTypes={
-	name:PropTypes.string.isRequired,
-	sex:PropTypes.string,
-	age:PropTypes.number
-}
-Person.defaultProps={
-	sex:'男',
-	age:18
-}
-ReactDOM.render(
-	<Person name='jerry'/>,
-	document.getElementById('example')
-);
-</script>	
 
 ================================================================================	
 
 返回一个文件
 response.send(__dirname+'/index.html')	
-================================================================================		
-
-    <div id="app">
-        <!-- 绑定class样式--字符串写法，适用于：样式的类名不确定，需要动态指定 -->
-      <p :class="mood" @click="changeMood">{{ message }}</p>
-        <!-- 绑定class样式--数组写法，适用于：要绑定的样式个数不确定、名字也不确定 -->
-      <p :class="classAttr">{{message}}</p>
-      <!-- 绑定class样式--对象写法，适用于：要绑定的样式个数确定，名字也确定，但要动态决定用不用 -->
-      <p :class="classObj">{{message}}</p>
-    </div>
-    
-    <script>
-    const vm=new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello Vue.js!',
-          mood:'normal',
-          classAttr:['atguigu1','atguigu2','atguigu3'],
-          classObj:{
-              atguigu1:false,
-              atguigu2:false,
-          }
-      },
-        methods:{
-            changeMood(){
-                const arr=['happy','sad','normal']
-                const index=Math.floor(Math.random()*3)
-                this.mood=arr[index]
-            }
-        }
-    })
-    </script>	
-================================================================================	
-#input返回的是字符串类型
-age=input("请输入你的年龄：")
-
-#字符串和整数int是不可以比较的
-if int(age)>18:
-    print("你可以去网吧了")
-
-#案例中考察了三个知识点
-#（1）控制台输入
-#（2）强制类型转换
-#（3）int和str是不能比较的	
 ================================================================================
 
     <div></div>
@@ -247,7 +72,7 @@ app.all("/",(request,response)=>{
 	//函数在客户端已经定义好
         response.send(`handle(${str})`);
 });	
-============================================================
+
 
 ============================================================
 appDiv.style.border="solid 1px #f00"
@@ -257,26 +82,8 @@ const script=document.createElement('script');
 script.src="http://www.baidu.com";
 //3.将script插入到文档中
 document.body.appendChild(script);
-============================================================
-绑定样式：
-    1.class样式
-        写法:class="xxx",xxx可以是字符串，对象，数组。
-        字符串写法适用于：类名不确定，要动态获取。
-        对象写法适用于：要绑定多个样式，个数不确定，名字也不确定。
-        数组写法适用于：要绑定多个样式，个数确定，名字也确定，但不确定用不用。
-    2.style样式
-        :style="{fontSize:xxx}"其中xxx是动态值。
-        :style="[a,b]"其中a,b是样式对象。
 
-============================================================
 
-Entry：Webpack 以那个文件作为入口文件，开始打包
-
-Output：告诉Webpack打包后的资源bundles，输出到哪里去，以及如何命名
-
-Loader：让Webpack能够去处理那些非JavaScript文件（webpack自身只能理解JavaScript）
-
-Plugins：可以用来打包优化和压缩，重新定义环境变量
 ============================================================
 条件渲染：
     1.v-if
@@ -392,28 +199,6 @@ postId关联文章id author关联name
 json-server --watch db.json
 
 ============================================================
-添加元素的几个方法：
-
-append 在末尾添加元素
-
-insert 在指定位置插入元素
-
-extend 合并两个列表
-============================================================
-//1. 一定要初始化
-//const A;
-//2. 一般常量使用大写（潜规则）
-//const a = 100;
-//3. 常量的值不能修改
-//4. 块儿级作用域
-{
-  const PLAYER = 'UZI'
-}
-//5. 对于数组和对象的元素修改，不算做对常量的修改，不会报错
-const TEAM=['UZI','MXLG',"Ning","Letme"];
-TEAM.push('Meiko')
-console.log(TEAM)
-============================================================
 
 npm init 取名 webpack-test
 
@@ -485,13 +270,7 @@ SELECT * FROM `user` WHERE NAME = '1' OR ' and password = '=1 OR '1' = '1'
 	1. 最好使用每条数据的唯一的标识作为key，比如id、手机号、身份证号、学号等唯一值。
 	2. 如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，
 		使用index作为key是没有问题的。
-============================================================
-关键字 in
 
-含义：判断某字段的值是否属于in列表中某一项
-特点：
-	使用in提高语句简洁度
-	in列表的值类型必须一致或兼容
 ============================================================
 除了解决Statement的拼串、sql问题之外，PreparedStatement还有哪些好处呢？
 1. PreparedStatement可以操作Blob的数据，而Statement做不到
@@ -513,6 +292,8 @@ SELECT * FROM `user` WHERE NAME = '1' OR ' and password = '=1 OR '1' = '1'
 
 空格处理：strip
 ============================================================
+
+React:通过React.createRef获取节点
     <div id="example"></div>
     <script type="text/babel">
         class Demo extends React.Component{
@@ -555,50 +336,7 @@ git add //添加到暂存区
 git commit -m "message" //提交到本地仓库
 
 git remote add origin url //关联到远程仓库
-============================================================
 
-Vue:计算属性实现搜索功能 //#region //#endregion
-  <div id="app">
-    <input v-model='keyword' type='text' placeholder='请输入您想查找的人'>
-    <ul v-for="p in fillPerson">
-      {{p.id}}-{{p.name}}-{{p.age}}-{{p.sex}}
-    </ul>
-  </div>
-  
-  <script>
-  //计算属性实现搜索功能
-  const vm=new Vue({
-    el: '#app',
-    data: {
-      persons:[
-        {id:'001',name:'马冬梅',age:'45',sex:'女'},
-        {id:'002',name:'周冬雨',age:'34',sex:'女'},
-        {id:'003',name:'周杰伦',age:'45',sex:'男'},
-        {id:'004',name:'温兆伦',age:'61',sex:'男'},
-      ],
-      keyword:'',
-      fillPerson:[]  	  
-    },
-    watch:{
-      #keyword:{
-        immediate:true,
-        handler(val){
-          this.fillPerson=#this.persons.filter((p)=>{
-            return p.name.#indexOf(val) !== -1
-          })
-        }
-      }
-    },	
-    computed:{
-      fillPerson(){
-          return this.persons.filter((p)=>{
-              return p.name.indexOf(this.keyword)!==-1
-          })
-      }
-    }
-  })
-
-  </script>
 ============================================================
 1. 通过onXxx属性指定事件处理函数（注意大小写）
 	a. React使用的是自定义（合成）事件，而不是使用的原生DOM事件 ---为了更好的兼容性
@@ -621,6 +359,42 @@ const zhao={
 }
 let {xiaopin}=zhao
 xiaopin()
+============================================================
+使用create-react-app（脚手架）搭建项目
+
+create-react-app是从react官方提供的用于搭建基于react+webpack+es6项目的脚手架
+
+npm install -g create-ract-app : 全局下载工具
+
+create-react-app react-admin : 下载模板项目
+
+cd react-admin
+
+npm start
+============================================================
+查找元素
+
+所谓的查找，就是看看指定的元素是否存在，主要包含以下几个方法：
+
+in 和 not in 
+
+info=input("请输您想吃的菜：")
+caipu=['小鸡炖蘑菇','锅包肉']
+if info in caipu:
+    print('在')
+else:
+    print('不在')
 
 
+============================================================
+Servlet1 和 Servlet2可以共同完成一个完整的业务功能
+请求转发的特点：
+1、 浏览器地址没有变化
+2、 他们是一次请求
+3、 他们共享Request域中的数据
+4、 可以转发到WEB-INF目录下
+5、 不可以访问工程以外的资源
+============================================================
+============================================================
+============================================================
 ============================================================
