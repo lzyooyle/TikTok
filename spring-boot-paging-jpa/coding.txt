@@ -1,51 +1,4 @@
 
-
-Js 展开一个数组
-let arr1=[1,3,5,7,9]
-let arr2=[2,4,6,8,10]
-console.log(...arr1) //展开一个数组
-let arr3=[...arr1,...arr2] //连接数组
-
-//在函数中使用
-function sum(...numbers){
-    return numbers.reduce((preValue,currentValue)=>{
-        return preValue+currentValue
-    })    
-}
-console.log(sum(1,2,3,4))
-
-//构造字面量对象时，使用展开语法
-let person={name:'tom',age:18}
-let person2={...person}
-//console.log(...person) 展开运算符，不能展开对象
-person.name="jerry"
-console.log(person2)
-console.log(person)
-
-
-
-================================================================================	
-HashSet添加元素的过程
-我们向HashSet中添加元素a，首先调用元素a所在类的hashCode()方法，计算元素a的哈希值
-此哈希值接着通过某种算法计算出在HashSet底层数组中的存放位置（即为：索引位置）
-判断数组此位置上是否已有元素
-	如果此位置上没有其他元素，则元素a添加成功。---->情况1
-	如果此位置上有其他元素b(或以链表形式存在的多个元素)，则比较元素a与元素b的hash值
-		如果hash值不相同，则元素a添加成功 ---->情况2
-		如果hash值相同，进而需要调用元素a所在类的equals()方法
-			equals()返回true，元素a添加失败
-			equals()返回false，则元素a添加成功。 ---->情况3
-
-对于添加成功的情况2和情况3而言：元素a 与已经存在指定索引位置上的数据以链表的方式存储
-jdk 7 ：元素a放到数组中，指向原来的元素
-jdk 8 ：原来的元素在数组中，指向元素a
-总结：七上八下
-
-HashSet底层：数组+链表的结构
-
-
-================================================================================	
-
 返回一个文件
 response.send(__dirname+'/index.html')	
 ================================================================================
@@ -74,14 +27,6 @@ app.all("/",(request,response)=>{
 });	
 
 
-============================================================
-appDiv.style.border="solid 1px #f00"
-//1.创建script标签
-const script=document.createElement('script');
-//2.设置标签的src属性
-script.src="http://www.baidu.com";
-//3.将script插入到文档中
-document.body.appendChild(script);
 
 
 ============================================================
@@ -107,13 +52,7 @@ document.body.appendChild(script);
         如果没有找到则报错
     所以我们可以将一些经常需要访问的程序和文件的路径添加到path中
         这样我们就可以在任意位置来访问这些文件和程序了
-============================================================
-@RequestParam是将请求参数和控制器方法的形参创建映射关系
-@RequestParam一共有三个属性：
-value:指定为形参赋值的请求参数的参数名
-required:设置是否必须传输此请求参数，默认值为true
-defaultValue:不管required属性值为true或false,当value所指定的请求参数没有传输或传输的值为""时，则使用默认值为形参赋值
-@RequestParam(value="user_name",required=false,defalutValue="hehe")
+
 ============================================================
 每次只要有请求进入Tomcat服务器，Tomcat服务器就会把请求过来的HTTP协议信息解析好封装到Request对象中。
 然后传递到service方法（doGet和doPost）中给我们使用。我们可以通过HttpServletRequest对象，获取到所有请求的
@@ -132,17 +71,7 @@ print(len(a_list))
 
 for i in range(len(a_list)):
 	print(i)
-============================================================
-HttpServletRequest类的常用方法
-	getRequestURI() 获取请求的资源路径
-	getRequestURL() 获取请求的统一资源定位符（绝对路径）
-	gerRemoteHost()	获取客户端的ip地址
-	getHeader()		获取请求头
-	getParameter()	获取请求参数
-	getParameterValues()	获取请求的参数（多个值的时候使用）
-	getMethod()		获取请求的方式GET 或 POST
-	getAttribute(key)		获取域数据
-	getRequestDispatcher()	获取请求转发对象
+
 ============================================================
 项目描述
 1）此项目为一个前后台分离的后台管理的SPA，包括前端PC应用和后端应用
@@ -151,30 +80,8 @@ HttpServletRequest类的常用方法
 4）后端：使用Node+Express+Mongdb等技术
 5）采用模块化、组件化、工程化的模式开发
 
-============================================================
-v-for指令：
-	1.用于展示列表数据
-	2.语法：v-for="(item, index) in xxx" :key="yyy"
-	3.可遍历：数组、对象、字符串（用的很少）、指定次数（用的很少）
-============================================================
-.pink{
-    width:66px;
-    height:66px;
-    background:green;
-    float:left;
-    margin-right:16px;
-}
-<div class="pink"></div>
-<div class="pink"></div>
-<div class="pink"></div>
-window.onload=function(){
-    var element=document.querySelectorAll(".pink")
-    for(let i = 0;i<element.length;i++){
-        element[i].onclick=function(){
-            element[i].style.background="pink"
-        }
-    }
-}
+
+
 ============================================================
 
 安装json-server
@@ -222,9 +129,7 @@ index.js: webpack入口起点文件
 
 import data from './data.json'
 console.log(data)           
-============================================================
 
-SELECT * FROM `user` WHERE NAME = '1' OR ' and password = '=1 OR '1' = '1'
 ============================================================
 
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.9.1/axios.js"></script>
@@ -244,53 +149,7 @@ SELECT * FROM `user` WHERE NAME = '1' OR ' and password = '=1 OR '1' = '1'
 	    })
 }
     </script>
-============================================================
-面试题：react、vue中的key有什么作用？(key的内部原理)
 
-1. 虚拟DOM中的key的作用：
-	key是由虚拟DOM对象的标识，当状态中的数据发生变化时，Vue会根据【新数据】生成【新的虚拟DOM】
-	随后Vue进行【新虚拟DOM】与【旧虚拟DOM】的差异比较，比较规则如下：
-
-2.对比规则：
-	(1). 旧虚拟DOM中找到了与新虚拟DOM相同的key：
-		若虚拟DOM中的内容没变，直接使用之前的真实DOM!
-		若虚拟DOM中的内容变了，则生成新的真实DOM，然后替换掉页面中之前的真实DOM。
-
-	(2). 旧虚拟DOM中未找到与新虚拟DOM相同的key
-		创建新的真实DOM，随后渲染到页面
-
-3. 用index作为key可能会引发的问题：
-	1. 若对数据进行：逆序添加、逆序删除等破坏顺序操作：
-			会产生没有必要的真实DOM更新 ==> 界面效果没问题，但效率低。
-
-	2. 如果结构中还包括输入类的DOM：
-			会产生错误DOM更新 ==> 界面有问题。
-
-4. 开发中如何选择key?：
-	1. 最好使用每条数据的唯一的标识作为key，比如id、手机号、身份证号、学号等唯一值。
-	2. 如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，
-		使用index作为key是没有问题的。
-
-============================================================
-除了解决Statement的拼串、sql问题之外，PreparedStatement还有哪些好处呢？
-1. PreparedStatement可以操作Blob的数据，而Statement做不到
-2. PreparedStatement可以实现更高效率的批量操作
-============================================================
-获取长度：len
-
-查找内容：find 如果存在，则返回改内容在字符串中的第一次出现的索引值，否则返回-1
-
-判断：startswith，endswith 判断字符串以谁开头、结尾
-
-计算出现次数：count 
-
-替换内容：replace 
-
-切割字符串：split
-
-修改大小写：upper，lower
-
-空格处理：strip
 ============================================================
 
 React:通过React.createRef获取节点
@@ -318,47 +177,10 @@ React:通过React.createRef获取节点
         }
     ReactDOM.render(<Demo/>,document.getElementById('example'))
     </script>
-============================================================
-ps.execute()
-如果执行的是查询操作，有返回结果，则此方法返回true
-如果执行的是增、删、改操作，没有返回结果，则此方法返回false
-============================================================
-git 常用基本命令
 
-git config --global user.name "username" //配置用户名
 
-git config --global user.email "xx@gmail.com" //配置邮箱
 
-git init //初始化生成一个本地仓库
 
-git add //添加到暂存区
-
-git commit -m "message" //提交到本地仓库
-
-git remote add origin url //关联到远程仓库
-
-============================================================
-1. 通过onXxx属性指定事件处理函数（注意大小写）
-	a. React使用的是自定义（合成）事件，而不是使用的原生DOM事件 ---为了更好的兼容性
-	b. React中的事件是通过事件委托方式处理的（委托给组件最外层的元素） ---为了更高效
-2. 通过event.target得到发生时间的DOM元素对象 --- 不要过度使用ref
-============================================================
-
-//1. 数组的解构
-const F4=['小沈阳','刘能','赵四','宋小宝']
-let [xiao,liu,zhao,song]=F4
-console.log(xiao)
-
-//2. 对象的解构
-const zhao={
-    name:'赵本山',
-    age:68,
-    xiaopin:function(){
-        console.log("我可以演小品")
-    }
-}
-let {xiaopin}=zhao
-xiaopin()
 ============================================================
 使用create-react-app（脚手架）搭建项目
 
@@ -371,6 +193,20 @@ create-react-app react-admin : 下载模板项目
 cd react-admin
 
 npm start
+
+============================================================
+
+
+打包发布
+
+npm run build
+
+npm install -g serve
+
+serve build
+
+访问：http://localhost:5000
+
 ============================================================
 查找元素
 
@@ -387,14 +223,65 @@ else:
 
 
 ============================================================
-Servlet1 和 Servlet2可以共同完成一个完整的业务功能
-请求转发的特点：
-1、 浏览器地址没有变化
-2、 他们是一次请求
-3、 他们共享Request域中的数据
-4、 可以转发到WEB-INF目录下
-5、 不可以访问工程以外的资源
+在node中，通过require()函数来引入外部的模块
+
+require()可以传递一个文件的路径作为参数，node将会自动根据该路径来引入外部模块
+
+这里的路径，如果使用相对路径，必须以.或..开头
+
+使用require()引入模块以后，该函数会返回一个对象，这个对象代表的是引入的模块
+
+var md = require('./module.js')
 ============================================================
+在Node中，一个js文件就是一个模块
+
+在Node中，每一个js文件中的js代码都是独立运行在一个函数中
+
+	而不是全局作用域，所以一个模块中的变量和函数在其他模块中无法访问
+
+我们可以通过exports 来向外部暴露变量和文件
+
+	只需要将需要暴露给外部的变量或方法设置为exports的属性即可
+
+向外部暴露属性或方法
+
+exports.x='123'
+
+exports.fn=function(){
+
+}
+
 ============================================================
+    <div id="test"></div>
+    <script type="text/babel">
+        class Count extends React.Component{
+            constructor(props) {
+                console.log('Conunt-constructor');
+                super(props)
+            }
+
+            //组件将要挂载的钩子
+            componentWillMount(){
+                console.log('Count-componentWillMount');   
+            }            
+
+            //组件挂载完毕的钩子
+            componentDidMount(){
+                console.log('Count-componentDidMount');
+            }
+            render(){
+                console.log('Count-render');
+                return(
+                    <div>
+                        <h1>demo</h1>
+                    </div>
+                )
+            }
+
+
+        }
+        ReactDOM.render(<Count/>,document.getElementById('test'))
+        
+    </script>
 ============================================================
 ============================================================
