@@ -22,63 +22,6 @@ app.all("/",(request,response)=>{
         response.send(`handle(${str})`);
 });	
 
-============================================================
-项目描述
-1）此项目为一个前后台分离的后台管理的SPA，包括前端PC应用和后端应用
-2）包括用户管理/商品分类管理/商品管理/权限管理等功能模块
-3）前端：使用React全家桶+Antd+Axios+ES6+Webpack等技术
-4）后端：使用Node+Express+Mongdb等技术
-5）采用模块化、组件化、工程化的模式开发
-
-
-
-============================================================
-
-安装json-server
-
-npm install -g json-server
-
-db.json
-posts代表文章 comments代表评论 profile代表个人
-postId关联文章id author关联name
-{
- "posts":[
-	{"id":1,"title":"json-server","author":"typicode"}
-	 ],
-  "comments":[
-	{"id":1,"body":"some comment","postId":1}
-	],
-  "profile":{"name":"typicode"}
-}
-
-启动json-server
-
-json-server --watch db.json
-
-============================================================
-
-npm init 取名 webpack-test
-
-全局安装：npm i webpack webpack-cli -g
-
-本地安装：npm i webpack webpack-cli -D
-
-index.js: webpack入口起点文件
-
-1. 运行指令
-	开发环境：webpack ./src/index.js -o ./build/built.js --mode=development
-	webpack会以 ./src/index.js 为入口文件开始打包，打包后输出到 ./build/built.js
-	整体打包环境，是开发环境
-	生产环境：webpack ./src/index.js -o ./build/built.js --mode=production
-	webpack会以 ./src/index.js 为入口文件开始打包，打包后输出到 ./build/built.js
-	整体打包环境，是生产环境
-2. 结论：
-	1. webpack能处理js/json资源，不能处理css/img等其他资源
-	2. 生产环境和开发环境将ES6模块化编译成浏览器能识别的模块化~
-	3. 生产环境比开发环境多一个压缩js代码
-
-import data from './data.json'
-console.log(data)           
 
 ============================================================
 
@@ -102,199 +45,6 @@ console.log(data)
 
 ============================================================
 
-React:通过React.createRef获取节点
-    <div id="example"></div>
-    <script type="text/babel">
-        class Demo extends React.Component{
-            //React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点，该容器时“专人专用”的
-            myRef1=React.createRef()
-            myRef2=React.createRef()
-            showInfo=()=>{
-                alert(this.myRef1.current.value);
-            }
-            showData=()=>{
-                alert(this.myRef2.current.value);
-            }
-            render(){
-                return(
-                    <div>
-                        <input ref={this.myRef1} type='text' placeholder='请输入数据'/>
-                        <button onClick={this.showInfo}>点击显示数据</button>
-                        <input onBlur={this.showData} ref={this.myRef2} type='text' placeholder='失去焦点显示数据'/>
-                        </div>
-                )
-            }
-        }
-    ReactDOM.render(<Demo/>,document.getElementById('example'))
-    </script>
-
-
-
-
-============================================================
-使用create-react-app（脚手架）搭建项目
-
-create-react-app是从react官方提供的用于搭建基于react+webpack+es6项目的脚手架
-
-npm install -g create-ract-app : 全局下载工具
-
-create-react-app react-admin : 下载模板项目
-
-cd react-admin
-
-npm start
-
-============================================================
-
-
-打包发布
-
-npm run build
-
-npm install -g serve
-
-serve build
-
-访问：http://localhost:5000
-
-============================================================
-查找元素
-
-所谓的查找，就是看看指定的元素是否存在，主要包含以下几个方法：
-
-in 和 not in 
-
-info=input("请输您想吃的菜：")
-caipu=['小鸡炖蘑菇','锅包肉']
-if info in caipu:
-    print('在')
-else:
-    print('不在')
-
-
-============================================================
-在node中，通过require()函数来引入外部的模块
-
-require()可以传递一个文件的路径作为参数，node将会自动根据该路径来引入外部模块
-
-这里的路径，如果使用相对路径，必须以.或..开头
-
-使用require()引入模块以后，该函数会返回一个对象，这个对象代表的是引入的模块
-
-var md = require('./module.js')
-============================================================
-在Node中，一个js文件就是一个模块
-
-在Node中，每一个js文件中的js代码都是独立运行在一个函数中
-
-	而不是全局作用域，所以一个模块中的变量和函数在其他模块中无法访问
-
-我们可以通过exports 来向外部暴露变量和文件
-
-	只需要将需要暴露给外部的变量或方法设置为exports的属性即可
-
-向外部暴露属性或方法
-
-exports.x='123'
-
-exports.fn=function(){
-
-}
-
-============================================================
-    <div id="test"></div>
-    <script type="text/babel">
-        class Count extends React.Component{
-            constructor(props) {
-                console.log('Conunt-constructor');
-                super(props)
-            }
-
-            //组件将要挂载的钩子
-            componentWillMount(){
-                console.log('Count-componentWillMount');   
-            }            
-
-            //组件挂载完毕的钩子
-            componentDidMount(){
-                console.log('Count-componentDidMount');
-            }
-            render(){
-                console.log('Count-render');
-                return(
-                    <div>
-                        <h1>demo</h1>
-                    </div>
-                )
-            }
-
-
-        }
-        ReactDOM.render(<Count/>,document.getElementById('test'))
-        
-    </script>
-============================================================
-    <div id="app">
-        <form @submit.prevent='demo'>
-            账号：<input type='text' v-model.trim='userInfo.account'><br/><br/>
-            密码：<input type='password' v-model='userInfo.password'><br/><br/>
-            年龄：<input type='number' v-model.number='userInfo.age'><br/><br/>
-            性别：
-            男<input type='radio' name='sex' v-model='userInfo.sex' value='male'>
-            女<input type='radio' name='sex' v-model='userInfo.sex' value='female'><br/><br/>
-            爱好：
-            学习<input type='checkbox' v-model='userInfo.hobby' value='study'>
-            打游戏<input type='checkbox' v-model='userInfo.hobby' value='game'>
-            吃饭<input type='checkbox' v-model='userInfo.hobby' value='eat'><br/><br/>
-            所属校区
-            <select v-model='userInfo.city'>
-                <option value='请选择校区'></option>
-                <option value='beijing'>北京</option>
-                <option value='shanghai'>上海</option>
-                <option value='shenzheng'>深圳</option>
-                <option value='wuhan'>武汉</option>
-            </select>
-            <br/><br/>
-            其他信息：
-            <textarea v-model.lazy='userInfo.other'></textarea><br/><br/>
-            <input type='checkbox' v-model='userInfo.agree'><br/><br/>
-            <button>提交</button>
-        </form>
-    </div>
-    <script>
-/*收集表单数据
-若：< input type="text"/>。则v-mode收集的是 valuet值，用户输入的就是 value值。
-若：< input type=" radio"/,则v-mode收集的是 value值，且要给标签配置 value值
-若: <input type="checkbox"/>
-1.没有配置 input的 value属性，那么收集的就是 checked(勾选or未勾选，是布尔值)
-2.配置 input的 value属性
-(1)v-mode的初始值是非数组，那么收集的就是 checked(勾选or未勾选，是布尔值)
-(2)v-mode的初始值是数组，那么收集的的就是 value组成的数组
-备注：v- model的三个修饰符：
-1azy:失去焦点再收集数据
-number:输入字符中转为有效的数字
-trim:输入首尾空格过滤      */  
- const vm=new Vue({
-  el: '#app',
-  data: {
-    userInfo:{
-        account:'',
-        password:'',
-        sex:'female',
-        hobby:[],
-        city:'beijing',
-        other:'',
-        agree:''
-    }
-  },
-  methods:{
-      demo(){
-          console.log(JSON.stringify(this.userInfo));
-      }
-  }
-})
-    </script>
-============================================================
 过滤器：
 	定义：对要显示的数据进行特定格式化后再显示（使用于一些简单逻辑的处理）
 	语法：
@@ -303,4 +53,25 @@ trim:输入首尾空格过滤      */
 	备注：
 		1.过滤器也可以接收额外参数、多个过滤器也可以串联
 		2.并没有改变原本的数据，是产生新年的对应的数据
-============================================================		
+============================================================	
+	
+1.v-once所在节点在初次动态渲染后，就为静态内容了。
+2.以后数据的改变不会引起v-once所在结构的更新，可以用于优化性能。
+    <style>
+        [v-once]:{
+            display:none;
+        }
+    </style>  
+    <div id="app">
+        <h2 v-once>初始化值：{{n}}</h2>
+        <h2>当前的值是：{{n}}</h2>
+        <button @click="n++">add</button>
+    </div>
+    <script>
+ const vm=new Vue({
+  el: '#app',
+  data:{
+      n:1
+  }
+})
+    </script>
