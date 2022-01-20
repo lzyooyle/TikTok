@@ -1,0 +1,33 @@
+/**
+ * 一个数组中有若干个顺序的从小到达排序的数字
+ * 要求用一根有长度的绳子，去覆盖数字之间的差值
+ * 问：最多能覆盖几个数字
+  */
+public class MainConfig {
+    public static void main(String[] args) {
+        //定义一个数字顺序的数组
+        int[] arr=new int[]{1,2,3,4,5,6,18,19};
+        //调用方法，传入数组，和绳子的长度
+        rope(arr,6);
+    }
+    public static void rope(int[] args,int ropeLength){
+        //定义滑动窗口的左边界
+        int left=0;
+        //定义滑动窗口的有边界
+        int right=0;
+        //定义能覆盖的数字的个数
+        int max=0;
+        //数组的长度，遍历用
+        int arrLength=args.length;
+        //左边界小于数组长度
+        while(left<arrLength){
+            //右边界小于数组长度并且右边界数组值 - 左边界数组值 <= 绳子的长度
+            while(right<arrLength && args[right]-args[left]<=ropeLength){
+                right++;
+            }
+            //求最大值
+            max=Math.max(max,right-(left++));
+        }
+        System.out.println(max);
+    }
+}
