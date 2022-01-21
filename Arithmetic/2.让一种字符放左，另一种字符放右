@@ -1,3 +1,11 @@
+
+/**
+ * 一个数组中只有两种字符‘G’和‘B’
+ * 可以让所有的G都放在左侧，所有的B都放在右侧
+ * 或者让所有的G都放在右侧，所有的B都放在左侧
+ * 但是只能在相邻的字符之间进行交换操作
+ * 返回交换次数最少的方案
+ */
 public class file{
     public static void main(String[] args) {
         String s="BGBBGBBBG";
@@ -10,9 +18,9 @@ public class file{
         int step2=0;
         int bi=0;
         for (int i = 0; i < chars.length; i++) {
-            if(chars[i]=='G'){
+            if(chars[i]=='G'){  //当前的G去左边 方案1
                 step1+=i-(gi++);
-            }else{
+            }else{ //当前的B去左边 方案2
                 step2+=i-(bi++);
             }
         }
