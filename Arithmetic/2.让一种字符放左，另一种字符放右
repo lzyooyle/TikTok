@@ -1,0 +1,23 @@
+public class file{
+    public static void main(String[] args) {
+        String s="BGBBGBBBG";
+        if(s==null || s.equals("")){
+            System.out.println("字符串不能为空");
+        }
+        char[] chars = s.toCharArray();
+        int step1=0;
+        int gi=0;
+        int step2=0;
+        int bi=0;
+        for (int i = 0; i < chars.length; i++) {
+            if(chars[i]=='G'){
+                step1+=i-(gi++);
+            }else{
+                step2+=i-(bi++);
+            }
+        }
+        System.out.println(step1+"::"+step2);
+        int max=Math.max(step1,step2);
+        System.out.println(max);
+    }
+}
