@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-24T07:00:19.870Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="kGWeQDtwaVr2ADpvcZ9o" version="16.6.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-24T07:54:57.629Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="nNkcBzzrxooD0CtF9aDk" version="16.6.3" type="github">
   <diagram id="yGy4Ii2T6zbjXJuNCpUm" name="Page-1">
     <mxGraphModel dx="1037" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1954" pageHeight="1636" math="0" shadow="0">
       <root>
@@ -6,10 +6,10 @@
           <mxCell />
         </object>
         <mxCell id="1" parent="0" />
-        <mxCell id="da6Q-GHqTjQvTxXmLacU-1" value="&lt;font style=&quot;font-size: 16px&quot;&gt;用户id随机生成，一个用户只能秒杀一次&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;秒杀成功的人，加入到秒杀成功的清单中&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="10" y="690" width="170" height="170" as="geometry" />
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-1" value="&lt;font style=&quot;font-size: 16px&quot;&gt;用户id随机生成，一个用户只能秒杀一次&lt;br&gt;&lt;br&gt;秒杀成功的人，加入到秒杀成功的清单中&lt;br&gt;&lt;br&gt;用户清单用set&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="10" y="680" width="180" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="da6Q-GHqTjQvTxXmLacU-2" value="商品id固定，秒杀库存减1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-2" value="商品id固定，秒杀库存减1&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;库存清单用string" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="1750" y="650" width="180" height="180" as="geometry" />
         </mxCell>
         <mxCell id="da6Q-GHqTjQvTxXmLacU-3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;width=14;endSize=8.95;" edge="1" parent="1" source="da6Q-GHqTjQvTxXmLacU-1" target="da6Q-GHqTjQvTxXmLacU-2">
