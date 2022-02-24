@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-02-24T06:47:42.458Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="utidEhhiW2L418pRRBTd" version="16.6.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-24T07:00:19.870Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="kGWeQDtwaVr2ADpvcZ9o" version="16.6.3" type="github">
   <diagram id="yGy4Ii2T6zbjXJuNCpUm" name="Page-1">
-    <mxGraphModel dx="1037" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1636" math="0" shadow="0">
+    <mxGraphModel dx="1037" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1954" pageHeight="1636" math="0" shadow="0">
       <root>
         <object label="" id="0">
           <mxCell />
@@ -10,7 +10,7 @@
           <mxGeometry x="10" y="690" width="170" height="170" as="geometry" />
         </mxCell>
         <mxCell id="da6Q-GHqTjQvTxXmLacU-2" value="商品id固定，秒杀库存减1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="1450" y="640" width="180" height="180" as="geometry" />
+          <mxGeometry x="1750" y="650" width="180" height="180" as="geometry" />
         </mxCell>
         <mxCell id="da6Q-GHqTjQvTxXmLacU-3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;width=14;endSize=8.95;" edge="1" parent="1" source="da6Q-GHqTjQvTxXmLacU-1" target="da6Q-GHqTjQvTxXmLacU-2">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -22,7 +22,25 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="da6Q-GHqTjQvTxXmLacU-11" value="2.连接redis" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="500" y="620" width="150" height="100" as="geometry" />
+          <mxGeometry x="410" y="800" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-12" value="1.判断商品id和用户id非空" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="230" y="620" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-13" value="3.拼接商品的key和用户的key" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="600" y="620" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-14" value="4.如果库存为null，说明秒杀活动还没开始" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="750" y="800" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-15" value="5.判断用户是否重复秒杀" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="950" y="620" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-16" value="6.如果库存小于等于0，说明秒杀已经结束了" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="800" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="da6Q-GHqTjQvTxXmLacU-17" value="7.如果秒杀成功，库存减1，用户id加入到，秒杀成功的清单中去" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="620" width="240" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
