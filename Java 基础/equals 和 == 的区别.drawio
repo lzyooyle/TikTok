@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-28T03:04:39.769Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="PenHtiDBjUHAjVRmxGNI" version="16.6.4" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-28T03:11:48.886Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="3o06r9x7CIcvJ_xO79i1" version="16.6.4" type="github">
   <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
     <mxGraphModel dx="1037" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -6,6 +6,15 @@
         <mxCell id="1" parent="0" />
         <mxCell id="74SDBc7pM0oVFmOpXEiG-94" value="&lt;table border=&quot;1&quot; width=&quot;100%&quot; cellpadding=&quot;4&quot; style=&quot;width: 100% ; height: 100% ; border-collapse: collapse&quot;&gt;&lt;tbody style=&quot;font-size: 16px&quot;&gt;&lt;tr style=&quot;background-color: rgb(167 , 201 , 66) ; color: rgb(255 , 255 , 255) ; border: 1px solid rgb(152 , 191 , 33)&quot;&gt;&lt;th align=&quot;left&quot;&gt;区别&lt;/th&gt;&lt;th align=&quot;left&quot;&gt;==&lt;/th&gt;&lt;th align=&quot;left&quot;&gt;equal&lt;/th&gt;&lt;/tr&gt;&lt;tr style=&quot;border: 1px solid #98bf21&quot;&gt;&lt;td&gt;基本数据类型&lt;/td&gt;&lt;td&gt;比较的是值&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background-color: #eaf2d3 ; border: 1px solid #98bf21&quot;&gt;&lt;td&gt;对象&lt;/td&gt;&lt;td&gt;比较的是内存地址&lt;/td&gt;&lt;td&gt;比较的是值&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;border: 1px solid #98bf21&quot;&gt;&lt;td&gt;Integer数据类型&lt;/td&gt;&lt;td&gt;维持了一个IntegerCache缓存，在-128-127范围内比较值&lt;/td&gt;&lt;td&gt;在范围之外比较的内存地址&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="text;html=1;overflow=fill;rounded=0;fontFamily=Helvetica;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="10" y="90" width="810" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="74SDBc7pM0oVFmOpXEiG-95" value="区别" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;labelBackgroundColor=none;fontFamily=Helvetica;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="30" y="500" width="800" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="74SDBc7pM0oVFmOpXEiG-96" value="==对于基本数据类型比较的是值，对于对象比较的是内存地址，由于Integer类型维护了一个IntegerCache，在&#xa;-128-127范围内比较的是值，在范围外比较的是内存地址" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;labelBackgroundColor=none;fontFamily=Helvetica;fontSize=16;spacing=4;spacingBottom=-12;" vertex="1" parent="74SDBc7pM0oVFmOpXEiG-95">
+          <mxGeometry y="30" width="800" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="74SDBc7pM0oVFmOpXEiG-97" value="equals 用于对象之间的比较，比较的是值" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;labelBackgroundColor=none;fontFamily=Helvetica;fontSize=16;" vertex="1" parent="74SDBc7pM0oVFmOpXEiG-95">
+          <mxGeometry y="100" width="800" height="110" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
