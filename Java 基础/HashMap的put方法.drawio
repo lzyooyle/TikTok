@@ -1,1 +1,42 @@
-<mxfile host="app.diagrams.net" modified="2022-03-01T03:17:04.904Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" version="16.6.4" etag="xTGABxseem3mXVgu6xV4" type="github"><diagram id="-c_opeiN9g6hBpj-44cz">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-04-01T06:40:45.445Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="cWRjFfjC7UBrpnvgkBvs" version="17.4.0" type="github">
+  <diagram id="-c_opeiN9g6hBpj-44cz" name="Page-1">
+    <mxGraphModel dx="1037" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1827" pageHeight="1669" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HebFo7qsX2Nu3jBxIVlY-1" target="HebFo7qsX2Nu3jBxIVlY-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-1" value="&lt;font style=&quot;font-size: 16px&quot;&gt;put方法&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" edge="1" parent="1" source="HebFo7qsX2Nu3jBxIVlY-2" target="HebFo7qsX2Nu3jBxIVlY-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-2" value="this.putVal(hash(var1), var1, var2, false, true)&lt;br&gt;计算了key的hash值" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="180" y="250" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-4" value="hash(Object var0)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=16;" edge="1" parent="1" source="HebFo7qsX2Nu3jBxIVlY-5" target="HebFo7qsX2Nu3jBxIVlY-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-5" value="final V putVal(int var1, K var2, V var3, boolean var4, boolean var5)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="380" y="460" width="500" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;fontSize=16;" edge="1" parent="1" source="HebFo7qsX2Nu3jBxIVlY-7" target="HebFo7qsX2Nu3jBxIVlY-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-7" value="如果当前数组为空或者数组长度为0.调用resize方法，" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="750" y="250" width="390" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-10" value="如果当前位置为空，则添加数据成功" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="475" y="630" width="310" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
