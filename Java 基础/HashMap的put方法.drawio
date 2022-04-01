@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-01T06:44:09.351Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="P2MghFX8bVCLKvzRA0to" version="17.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-01T06:47:43.552Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="AK7PWxnXQI3zr7hPAezX" version="17.4.0" type="github">
   <diagram id="-c_opeiN9g6hBpj-44cz" name="Page-1">
     <mxGraphModel dx="1037" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1827" pageHeight="1669" math="0" shadow="0">
       <root>
@@ -52,8 +52,20 @@
         <mxCell id="HebFo7qsX2Nu3jBxIVlY-13" value="判断是否是树节点，如果是树节点则添加到树中&lt;br&gt;putTreeVal(this, var6, var1, var2, var3)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="35" y="790" width="440" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=16;" edge="1" parent="1" source="HebFo7qsX2Nu3jBxIVlY-15" target="HebFo7qsX2Nu3jBxIVlY-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" edge="1" parent="1" source="HebFo7qsX2Nu3jBxIVlY-15" target="HebFo7qsX2Nu3jBxIVlY-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="HebFo7qsX2Nu3jBxIVlY-15" value="如果不是树节点，则遍历链表" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="610" y="800" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-17" value="如果key不存在则添加元素成功，判断链表长度是否大于7，如果大于7，则转换为树" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="370" y="990" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-19" value="如果key已存在，则直接覆盖" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="870" y="990" width="370" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
