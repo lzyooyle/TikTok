@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-01T02:21:31.419Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36" etag="kygyeEsPZWm_gNNGTP3O" version="17.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-01T02:24:43.790Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36" etag="Y9AUKxTcxpWEVutI2xtj" version="17.4.0" type="github">
   <diagram id="-c_opeiN9g6hBpj-44cz" name="Page-1">
     <mxGraphModel dx="1037" dy="-175" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1827" pageHeight="369" math="0" shadow="0">
       <root>
@@ -26,23 +26,23 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="8j4DKFAAhKA7qePBFpOd-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=17;" edge="1" parent="1" source="8j4DKFAAhKA7qePBFpOd-6" target="8j4DKFAAhKA7qePBFpOd-10">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="8j4DKFAAhKA7qePBFpOd-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=17;entryX=0.532;entryY=-0.033;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8j4DKFAAhKA7qePBFpOd-6" target="8j4DKFAAhKA7qePBFpOd-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="1220" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="700" y="1200" />
+              <mxPoint x="700" y="1200" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="8j4DKFAAhKA7qePBFpOd-6" value="ensureExplicitCapacity(calculateCapacity(this.elementData, var1))&lt;br&gt;确保明确的容量方法（计算容量方法（0，1））" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
-          <mxGeometry x="370" y="1020" width="640" height="80" as="geometry" />
+        <mxCell id="8j4DKFAAhKA7qePBFpOd-6" value="ensureExplicitCapacity(calculateCapacity(this.elementData, var1))&lt;br&gt;确保明确的容量方法（计算容量方法（0，1））&lt;br&gt;modCount+1&lt;br&gt;如果10-数据元素&amp;gt;0&lt;br&gt;则扩容" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
+          <mxGeometry x="365" y="1060" width="650" height="110" as="geometry" />
         </mxCell>
         <mxCell id="8j4DKFAAhKA7qePBFpOd-8" value="calculateCapacity(Object[] var0, int var1)&lt;br&gt;获取当前数组长度和10的大的值" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
           <mxGeometry x="640" y="790" width="320" height="65" as="geometry" />
         </mxCell>
-        <mxCell id="8j4DKFAAhKA7qePBFpOd-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=17;" edge="1" parent="1" source="8j4DKFAAhKA7qePBFpOd-10" target="8j4DKFAAhKA7qePBFpOd-18">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8j4DKFAAhKA7qePBFpOd-10" value="ensureExplicitCapacity(int var1)&lt;br&gt;modCount+1&lt;br&gt;如果10-数据元素&amp;gt;0&lt;br&gt;则扩容" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
-          <mxGeometry x="525" y="1200" width="330" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="8j4DKFAAhKA7qePBFpOd-18" value="grow(int var1)&lt;br&gt;数组的长度扩容为原来的1.5倍&lt;br&gt;如果数组长度小于10&lt;br&gt;则数组长度等于10" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
-          <mxGeometry x="536.25" y="1360" width="307.5" height="90" as="geometry" />
+        <mxCell id="8j4DKFAAhKA7qePBFpOd-18" value="grow(int var1)&lt;br&gt;数组的长度扩容为原来的1.5倍&lt;br&gt;如果数组长度小于10&lt;br&gt;则数组长度等于10，否则为原来1.5倍" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
+          <mxGeometry x="536.25" y="1230" width="307.5" height="90" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
