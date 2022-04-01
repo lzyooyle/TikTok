@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-01T06:43:07.263Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="GLtebZI6usYI0NBwySTI" version="17.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-01T06:44:09.351Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36" etag="P2MghFX8bVCLKvzRA0to" version="17.4.0" type="github">
   <diagram id="-c_opeiN9g6hBpj-44cz" name="Page-1">
     <mxGraphModel dx="1037" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1827" pageHeight="1669" math="0" shadow="0">
       <root>
@@ -43,11 +43,17 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=16;" edge="1" parent="1" source="HebFo7qsX2Nu3jBxIVlY-10" target="HebFo7qsX2Nu3jBxIVlY-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="HebFo7qsX2Nu3jBxIVlY-10" value="如果当前位置为空，则添加数据成功" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="475" y="630" width="310" height="60" as="geometry" />
         </mxCell>
         <mxCell id="HebFo7qsX2Nu3jBxIVlY-13" value="判断是否是树节点，如果是树节点则添加到树中&lt;br&gt;putTreeVal(this, var6, var1, var2, var3)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="420" y="800" width="440" height="60" as="geometry" />
+          <mxGeometry x="35" y="790" width="440" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HebFo7qsX2Nu3jBxIVlY-15" value="如果不是树节点，则遍历链表" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="610" y="800" width="370" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
