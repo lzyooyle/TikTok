@@ -1,0 +1,46 @@
+    //904. 水果成篮
+    public static int sum(int[] fruits) {
+        if(fruits.length==1){
+            return 1;
+        }
+        int count = 0;
+        int nums = 0;
+        int len = fruits.length;
+        HashSet set = new HashSet();
+        for (int i = 0; i < len; i++) {
+            if(nums<len-i){
+                int j = i+1;
+                if(j==len){
+                    break;
+                }
+                set.add(fruits[i]);
+                while(fruits[i]==fruits[j]){
+                    j++;
+                    if(j==len){
+                        j--;
+                        break;
+                    }
+                }
+                while(fruits[i]!=fruits[j] && count<1){
+                    set.add(fruits[j]);
+                    count++;
+                    if(j==len){
+                        break;
+                    }
+                }
+                while(set.contains(fruits[j])){
+                    j++;
+                    if(j==len){
+                        break;
+                    }
+                }
+                nums = Math.max(nums,j-i);
+                count=0;
+                set.clear();
+            }else {
+                break;
+            }
+
+        }
+        return nums;
+    }
