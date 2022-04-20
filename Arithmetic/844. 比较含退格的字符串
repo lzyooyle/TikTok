@@ -1,0 +1,31 @@
+//844. 比较含退格的字符串
+    public static String removeElement(String s) {
+        int find = 0;
+        int i = 0;
+        int end = s.length() - 1;
+        int count=0;
+        char[] nums = s.toCharArray();
+        for (int j = 0; j < nums.length; j++) {
+            if(nums[j]=='#'){
+                count++;
+            }
+        }
+        //System.out.println(count);
+        while (i < count) {
+            while (find < end && nums[find] != '#') {
+                find++;
+            }
+            nums[find]='@';
+            if (find > 0) {
+                int left = find - 1;
+                while (left>0 && nums[left] == '@') {
+                    left--;
+                }
+                nums[left] = '@';
+            }
+            System.out.println(Arrays.toString(nums)+i);
+            i++;
+        }
+        String s1 = String.valueOf(nums).replace("@","");
+        return s1;
+    }
