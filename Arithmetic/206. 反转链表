@@ -1,0 +1,49 @@
+206. 反转链表
+数组转链表
+    // 通过数组来构建链表
+    public static ListNode constructList(int[] nums) {
+        ListNode dummy = new ListNode(-1);
+        ListNode preNode = dummy;
+        for (int i = 0; i < nums.length; i ++) {
+            ListNode currNode = new ListNode(nums[i]);
+            preNode.next = currNode;
+            preNode = preNode.next;
+        }
+        return dummy.next;
+    }
+-----------------------------------
+如何通过数组或字符串直观地创建链表
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null){
+            return head;
+        }
+        ListNode cur = head;
+        int count = 0;
+        while(cur!=null){
+            count++;
+            cur = cur.next;
+        }
+        int[] arr = new int[count];
+        int num = 0;
+        ListNode cur1 = head;
+        while(cur1!=null){
+            arr[num] = cur1.val;
+            num++;
+            cur1 = cur1.next;
+        }
+        int[] are = new int[count];
+        for(int i = 0; i < count; i++){
+            are[i] = arr[count-1-i];
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode prev = dummy;
+        for(int i = 0; i < count; i++){
+            ListNode currNode = new ListNode(are[i]);
+            prev.next = currNode;
+            prev = prev.next;
+        }
+        return dummy.next;
+    }
+}
