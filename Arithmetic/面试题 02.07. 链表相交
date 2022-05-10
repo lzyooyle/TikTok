@@ -17,3 +17,41 @@ public class Solution {
         return null;
     }
 }
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode cap = headA;
+        ListNode cbp = headB;
+        int lena = 0;
+        int lenb = 0;
+        while(cap!=null){
+            lena++;
+            cap = cap.next;
+        }
+        while(cbp!=null){
+            lenb++;
+            cbp = cbp.next;
+        }
+        int same1 = 0;
+        cap = headA;
+        cbp = headB;
+        same1 = lena > lenb?lena-lenb:lenb-lena;
+        if(lena > lenb){
+            while(same1 -->0){
+                cap = cap.next;
+            }
+        }else {
+            while(same1 -->0){
+                cbp = cbp.next;
+            }
+        }
+        while(cap!=null){
+                if(cap == cbp){
+                    ListNode same = cap;
+                    return same;
+                }
+            cbp = cbp.next;                
+            cap = cap.next;
+        }
+        return null;
+    }
+}
