@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        boolean fair = true;
+        HashMap<Character,Integer> smap = new HashMap<>();
+        HashMap<Character,Integer> tmap = new HashMap<>();
+        Set<Character> set = new HashSet<>();
+        for(char c : s.toCharArray()){
+            smap.put(c,smap.getOrDefault(c,0) + 1);
+        }
+        set.addAll(smap.keySet());
+        //System.out.println(set);
+        for(char c : t.toCharArray()){
+            tmap.put(c,tmap.getOrDefault(c,0) + 1);
+        }
+        if(smap.size()!=tmap.size()){
+            fair=false;
+        }
+        for(Character c : set){
+            int index1 = smap.get(c)==null?0:smap.get(c);
+            int index2 = tmap.get(c)==null?0:tmap.get(c);
+            if(index1!=index2){
+                //System.out.println(c+"::"+smap.get(c)+"::"+c+"::"+tmap.get(c));
+                fair = false;
+            }
+        }
+        //System.out.println(smap.size()+"::"+tmap.size());
+        return fair;
+    }
+    }
