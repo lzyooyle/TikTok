@@ -34,3 +34,24 @@ class Solution {
         return arr3;
     }
 }
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set1 = new HashSet();
+        for(int i : nums1){
+            set1.add(i);
+        }
+        Set<Integer> set3 = new HashSet();
+        for(int i : nums2){
+            if(set1.contains(i)){
+                set3.add(i);
+            }            
+        }
+        //System.out.println(set1+"::"+set2+"::"+set3);
+        int[] arr3=new int[set3.size()];
+        int num = 0;
+        for (Integer o : set3){
+            arr3[num++] = o;
+        }
+        return arr3;
+    }
+}
