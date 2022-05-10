@@ -1,0 +1,19 @@
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode cap = headA;
+        ListNode cbp = headB;
+        while(cap!=null){
+            while(cbp!=null){
+                if(cap == cbp){
+                    ListNode same = cap;
+                    System.out.println(cap.val);
+                    return same;
+                }
+                cbp=cbp.next;                
+            }
+            cbp = headB;
+            cap = cap.next;
+        }
+        return null;
+    }
+}
