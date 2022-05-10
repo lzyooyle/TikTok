@@ -1,0 +1,36 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set set1 = new HashSet();
+        for(int i : nums1){
+            set1.add(i);
+        }
+        Set set2 = new HashSet();
+        for(int i : nums2){
+            set2.add(i);
+        }
+        int len1 = set1.size();
+        int len2 = set2.size();
+        Set set3 = new HashSet();
+        if(len1<len2){
+            for(Object i : set1){
+                if(set2.contains(i)){
+                    set3.add(i);
+                }
+            }
+        }else{
+            for(Object i : set2){
+                if(set1.contains(i)){
+                    set3.add(i);
+                }
+            }
+        }
+        //System.out.println(set1+"::"+set2+"::"+set3);
+        int[] arr3=new int[set3.size()];
+        int num = 0;
+        for (Object o : set3){
+            arr3[num] = Integer.parseInt(o+"");
+            num++;
+        }
+        return arr3;
+    }
+}
