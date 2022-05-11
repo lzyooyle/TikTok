@@ -28,3 +28,23 @@ class Solution {
         return fair;
     }
 }
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int temp;
+        int[] arr = new int[26];
+        boolean fair = true;
+        for(char c : magazine.toCharArray()){
+            temp = c - 'a';
+            arr[temp]++;
+        }
+        for(char c : ransomNote.toCharArray()){
+            temp = c - 'a';
+            if(arr[temp]>0){
+                arr[temp]--;
+            }else{
+                fair = false;
+            }
+        }
+        return fair;
+    }
+}
