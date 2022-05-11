@@ -18,7 +18,7 @@ class Solution {
                 int total = nums[i]+nums[left]+nums[right];
                 if(total==0){
                     list.add(Arrays.asList(new Integer[]{nums[i],nums[left],nums[right]}));
-                    System.out.println(i+"::"+left+"::"+right);
+                    //System.out.println(i+"::"+left+"::"+right);
                     while(left < right && nums[right]==nums[right-1]){
                         right--;
                     }
