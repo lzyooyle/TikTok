@@ -1,0 +1,57 @@
+class Solution {
+    public boolean isHappy(int n) {
+        int result = 0;
+        HashMap<Integer,Integer> map = new HashMap();
+        String s = result+"";
+        int num = 0;
+        boolean fair = true;
+        while(result!=1){
+            if(result == 0){
+                s = n+"";
+            }else {
+                s = result+"";
+                result = 0;
+            }
+            for(char c : s.toCharArray()){
+                result+=Integer.parseInt(c+"")*Integer.parseInt(c+"");
+            }
+            map.put(result,map.getOrDefault(result,0)+1);
+            if(map.getOrDefault(result,0)>1){
+                fair = false;
+                break;
+            }
+        }
+        //System.out.println(s+"::"+map);
+        return fair;
+    
+    }
+}
+class Solution {
+    public boolean isHappy(int n) {
+        int result = 0;
+        HashMap<Integer,Integer> map = new HashMap();
+        int s = result;
+        int num = 0;
+        boolean fair = true;
+        while(result!=1){
+            if(result == 0){
+                s = n;
+            }else {
+                s = result;
+                result = 0;
+            }
+            while(s>0){
+                int temp = s % 10;
+                result += temp*temp;
+                s = s / 10;
+            }
+            map.put(result,map.getOrDefault(result,0)+1);
+            if(map.getOrDefault(result,0)>1){
+                fair = false;
+                break;
+            }
+        }
+        return fair;
+    
+    }
+}
