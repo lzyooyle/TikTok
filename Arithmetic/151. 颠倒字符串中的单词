@@ -78,3 +78,21 @@ class Solution {
         return result.trim();
     }
 }
+class Solution {
+    public String reverseLeftWords(String s, int n) {
+        StringBuilder str = new StringBuilder(s);
+        int end = n-1;
+        swap(str,0,end);
+        swap(str,n,str.length()-1);
+        return str.reverse().toString();
+    }
+    public void swap(StringBuilder str, int start, int end){
+        while(start <= end){
+            char c = str.charAt(start);
+            str.setCharAt(start,str.charAt(end));
+            str.setCharAt(end,c);
+            start++;
+            end--;
+        }
+    }
+}
