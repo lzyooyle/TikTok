@@ -1,0 +1,27 @@
+class Solution {
+    public String reverseStr(String s, int k) {
+        if(s.length() == 1){
+            return s;
+        }
+        char[] chars = s.toCharArray();
+        int len = chars.length;
+        for(int i = 0; i < len; i++){
+            int left = i;
+            int right = i+k-1<len?i+k-1:len-1;
+            if(right > len){
+                return String.valueOf(chars);
+            }
+            while(left < right){
+                char temp = chars[left];
+                chars[left]=chars[right];
+                chars[right]=temp;
+                left++;
+                right--;
+            }
+            i = i + 2*k -1<len?i + 2*k -1:len-1;
+
+        }
+        System.out.println(Arrays.toString(chars));
+        return String.valueOf(chars);
+    }
+}
