@@ -38,3 +38,43 @@ class Solution {
         return s;
     }
 }
+class Solution {
+    public String reverseWords(String s) {
+        s = s.trim();
+        int len = s.length();
+        StringBuilder str = new StringBuilder();
+        for(int i = 0; i < len; i++){
+            if(s.charAt(i)==' '){
+                while(i > 0 && s.charAt(i)==s.charAt(i+1)){
+                    i++;
+                }
+                str.append("#");
+            }else{
+
+                str.append(s.charAt(i));
+            }
+        }
+        System.out.println(str);
+        String[] arr = str.toString().split("#");
+        int num = arr.length;
+        for(int left = 0; left < num; left++){
+            int right = num-1;
+            while(left<=right){
+                String temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++;
+                right--;
+            }
+            if(left > right){
+                break;
+            }
+        }
+        String result = "";
+        for(String s1 : arr){
+            result+=s1+" ";
+        }
+        System.out.println(result);
+        return result.trim();
+    }
+}
