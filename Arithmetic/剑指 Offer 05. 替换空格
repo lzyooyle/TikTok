@@ -1,0 +1,15 @@
+class Solution {
+    public String replaceSpace(String s) {
+        int len = s.length();
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            char c = s.charAt(i);
+            if(c==' '){
+                str.append("%20");
+            }else{
+                str.append(c+"");
+            }
+        }
+        return str.toString();        
+    }
+}
