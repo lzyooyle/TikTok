@@ -1,0 +1,14 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int fast = 0;
+        int slow;
+        for(slow = 0; fast < nums.length; fast++){
+            if(nums[slow]!=nums[fast]){
+                nums[slow+1] = nums[fast];
+                slow++;
+            }
+        }
+        System.out.println(Arrays.toString(nums));
+        return slow+1;
+    }
+}
