@@ -1,0 +1,19 @@
+class Solution {
+    public String removeDuplicates(String s) {
+        Deque<Character> deque = new LinkedList<>();
+        for(Character c : s.toCharArray()){
+            if(deque.peek()==c){
+                deque.pop();
+            }else{
+                deque.push(c);                
+            }
+           
+        }
+        System.out.println(deque);
+        StringBuilder str = new StringBuilder();
+        for(Character c : deque){
+            str.append(c);
+        }
+        return str.reverse().toString();
+    }
+}
