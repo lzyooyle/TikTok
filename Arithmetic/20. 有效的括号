@@ -1,0 +1,47 @@
+class Solution {
+    public boolean isValid(String s) {
+        StringBuilder str=new StringBuilder(s);
+        int find = 0;
+        for(int i = 0; i < str.length(); i++){
+            if(str.charAt(i)==')'){
+                int left = i - 1;
+                if(left >= 0){
+                    while(left > 0 && str.charAt(left)=='@'){
+                        left--;
+                    }         
+                    if(str.charAt(left)=='('){
+                        str.setCharAt(i,'@');
+                        str.setCharAt(left,'@');
+                    }
+                }
+                
+            }else if(str.charAt(i)==']'){
+                int left = i - 1;
+                if(left >= 0){
+                    while(left > 0 && str.charAt(left)=='@'){
+                        left--;
+                    }      
+                    if(str.charAt(left)=='['){
+                        str.setCharAt(i,'@');
+                        str.setCharAt(left,'@');
+                    }                    
+                }
+                
+            }else if(str.charAt(i)=='}'){
+                int left = i - 1;
+                if(left >= 0){
+                    while(left > 0 && str.charAt(left)=='@'){
+                        left--;
+                    }      
+                    if(str.charAt(left)=='{'){
+                        str.setCharAt(i,'@');
+                        str.setCharAt(left,'@');
+                    }                                  
+                }
+                
+            }               
+        }
+        System.out.println(str);
+        return str.toString().replace("@","").length()==0;
+    }
+}
