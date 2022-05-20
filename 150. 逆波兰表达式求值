@@ -1,0 +1,39 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Deque<String> deque = new LinkedList<>();
+        int total = 0;
+        for(String s : tokens){
+            if(deque.isEmpty() || "+-*/".indexOf(s)<0){
+                deque.push(s);
+                System.out.println(s);
+            }else{
+                switch(s){
+                    case "+":
+                        total = Integer.parseInt(deque.pop()) +Integer.parseInt(deque.pop());
+                        deque.push(total+"");                        
+                        break;
+                    case "-":
+                           int temp = Integer.parseInt(deque.pop());
+                        total = Integer.parseInt(deque.pop()) -temp;
+                        deque.push(total+"");
+                        break;  
+                    case "*":
+                        total = Integer.parseInt(deque.pop()) *Integer.parseInt(deque.pop());
+                        deque.push(total+"");
+                    break;   
+                    case "/":
+                           int tempc = Integer.parseInt(deque.pop());
+                        total = Integer.parseInt(deque.pop()) / tempc;
+                        deque.push(total+"");
+                    break;                                
+                }       
+                
+            }
+        }
+        if(!deque.isEmpty()){
+            return Integer.parseInt(deque.pop());
+        }
+        System.out.println(deque);
+        return total;
+    }
+}
