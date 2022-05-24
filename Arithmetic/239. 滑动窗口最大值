@@ -1,0 +1,29 @@
+先讲好，这题没有通过，只是想法比较奇特，代码量较少，最后一个测试用例没有通过，虽败犹荣
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int count = 0;
+        int max = nums[0];        
+        List<Integer> list = new ArrayList<>();
+        if(k == 1){
+            return nums;
+        }
+        for(int i = 0; i < nums.length; i++){
+            if(++count < k){
+                max =Math.max(max,nums[i]);
+            }else{
+                if(max <= nums[i]){
+                    max = nums[i];
+                }else if(i-k >= 0 &&max == nums[i-k]){
+                    max = nums[i];
+                    int find = i;
+                    while(find > i-k){
+                        max = Math.max(max,nums[find]);
+                        find--;
+                    }
+                }
+                list.add(max);				
+            }
+        }      
+        return list.stream().mapToInt(Integer::valueOf).toArray();  
+    }
+}
