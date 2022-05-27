@@ -67,3 +67,62 @@ class Solution {
         return result.toString();
     }
 }
+class Solution {
+    public String simplifyPath(String path) {
+        Deque<Character> deque = new LinkedList<>();
+        int len = path.length();
+        Character c=' ';
+        int num=0;
+        Boolean flag =false;
+        Boolean start = false;
+        for(int i = 0;i<=len;i++){
+            if(i==len){
+                c='/';
+                flag =true;
+            }else{
+                c=path.charAt(i);
+            }
+            if(c=='.' && (deque.getLast()=='/' || start == true)){
+                start = true;
+                num++;
+            }
+            if(c!='/' && c!='.' && num>0){
+                num=0;
+                start = false;
+            }
+            if(c=='/' && num>0 && num<3){        
+                while(num-- >0){
+                    while(deque.size()>0 &&deque.getLast()!='/'){
+                        deque.pollLast();
+                    }
+                    while(deque.size()>0 &&deque.getLast()=='/'){
+                        deque.pollLast();
+                    }
+                }
+                num=0;      
+                start = false;          
+            }           
+            if(deque.size()>0 && deque.getLast()==c && c=='/'){
+                    while(deque.size()>0 && deque.getLast()=='/'){
+                        deque.pollLast();
+                    } 
+            }                        
+            deque.add(c);
+            if(flag==true && deque.getLast()=='/'){
+                    while(deque.size()>0 && deque.getLast()=='/'){
+                        deque.pollLast();
+                    }         
+                    if(deque.size()==0){
+                        deque.add('/');
+                    }
+            }   
+     
+
+        }
+        StringBuilder result=new StringBuilder();
+        for(Character e:deque){
+            result.append(e);
+        }
+        return result.toString();
+    }
+}
