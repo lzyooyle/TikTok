@@ -1,0 +1,37 @@
+class Solution {
+    public int findBottomLeftValue(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeMap<Integer,Integer> map = new TreeMap<>();
+        queue.offer(root);
+        int num = 0;
+        int max = Integer.MIN_VALUE;
+        int find = root.val;
+        while(!queue.isEmpty()){
+            num++;
+            int size = queue.size();
+            for(int i = 0; i < size; i++){        
+                TreeNode node = queue.poll(); 
+                if(node.left!=null){
+                    queue.offer(node.left);
+                    if(node.left.left==null && node.left.right==null && num>max){
+                        max = num;
+                        System.out.println(num+"::"+node.left.val);
+                        //map.put(num,node.left.val);
+                        find = node.left.val;
+                    }
+                }
+                if(node.right!=null){
+                    queue.offer(node.right);
+                    if(node.right.left==null && node.right.right==null && node.left==null && num > max){
+                        max = num;
+                        System.out.println(num+"::"+node.right.val);
+                        //map.put(num,node.right.val);
+                        find = node.right.val;
+                    }                    
+                }                
+            }           
+        }
+        //return map.size()>0?map.lastEntry().getValue():root.val;
+        return find;
+    }
+}
