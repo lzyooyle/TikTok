@@ -1,0 +1,22 @@
+class Solution {
+    int num = 0;
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if(root==null) return false;
+        List<Integer> list = new ArrayList<>();
+        return total(root,num,list).contains(targetSum);
+    }
+    private List<Integer> total(TreeNode root,int num,List list){
+        num+=root.val;
+        if(root.left==null && root.right==null){
+            list.add(num);
+            num=0;
+        }
+        if(root.left!=null){
+            total(root.left,num,list);
+        }
+        if(root.right!=null){
+            total(root.right,num,list);
+        }
+        return list;
+    }
+}
