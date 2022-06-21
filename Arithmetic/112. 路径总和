@@ -20,3 +20,27 @@ class Solution {
         return list;
     }
 }
+class Solution {
+    int num = 0;
+    boolean isFlag=false;
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if(root==null) return false;
+        total(root,num,targetSum);
+        return isFlag;
+    }
+    private void total(TreeNode root,int num,int targetSum){
+        num+=root.val;
+        if(root.left==null && root.right==null){
+            if(num==targetSum){
+                isFlag = true;
+            }
+            num=0;
+        }
+        if(root.left!=null){
+            total(root.left,num,targetSum);
+        }
+        if(root.right!=null){
+            total(root.right,num,targetSum);
+        }
+    }
+}
