@@ -1,0 +1,29 @@
+class Solution {
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        TreeNode root = new TreeNode();
+        return merge(root1,root2,root);
+    }
+    private TreeNode merge(TreeNode root1,TreeNode root2,TreeNode root){
+        if(root1==null && root2==null) return null;        
+        int left = root1==null?0:root1.val;
+        int right = root2==null?0:root2.val;
+        root = new TreeNode(left+right);
+        if(root1==null && root2!=null){
+            TreeNode temp = new TreeNode(0);
+            root.left = merge(root2.left,temp.left,root);
+            root.right = merge(root2.right,temp.right,root);
+            return root;
+        }
+        if(root1!=null && root2==null){
+            TreeNode temp = new TreeNode(0);
+            root.left = merge(root1.left,temp.left,root);
+            root.right = merge(root1.right,temp.right,root);
+            return root;
+        }        
+        if(root1!=null && root2!=null){
+            root.left = merge(root1.left,root2.left,root);
+            root.right = merge(root1.right,root2.right,root);
+        }
+        return root;
+    }
+}
