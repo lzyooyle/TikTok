@@ -1,0 +1,22 @@
+class Solution {
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        return build(nums,0,nums.length);
+    }
+    private TreeNode build(int[] nums,int n_start,int n_end){
+        if(n_start==n_end){
+            return null;
+        }
+        int max=Integer.MIN_VALUE;
+        int root_index=0;
+        for(int i = n_start; i < n_end; i++){
+            if(max<nums[i]){
+                max = nums[i];
+                root_index=i;
+            }
+        }
+        TreeNode root = new TreeNode(max);
+        root.left = build(nums,n_start,root_index);
+        root.right = build(nums,root_index+1,n_end);
+        return root;
+    }
+}
