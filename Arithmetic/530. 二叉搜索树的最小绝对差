@@ -1,0 +1,14 @@
+class Solution {
+    TreeNode node;
+    int max=Integer.MAX_VALUE;
+    public int getMinimumDifference(TreeNode root) {
+        if(root==null) return 0;
+        int left = getMinimumDifference(root.left);        
+        if(node!=null && Math.abs(node.val-root.val)<max){
+            max = Math.abs(node.val-root.val);
+        }
+        node = root;
+        int right = getMinimumDifference(root.right);
+        return max;
+    }
+}
