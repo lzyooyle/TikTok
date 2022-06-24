@@ -1,0 +1,27 @@
+class Solution {
+    Map<Integer,Integer> map = new HashMap<>();
+    public int[] findMode(TreeNode root) {
+        getMap(root);
+        Object[] nums = map.values().toArray();  
+        Arrays.sort(nums);
+        int find = (int)nums[nums.length-1];
+        List<Integer> list = new ArrayList<>();
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            if(entry.getValue()==find){
+                list.add(entry.getKey());
+            }
+        }
+        int[] result = new int[list.size()];
+        for(int i = 0; i<list.size(); i++){
+            result[i]=list.get(i);
+        }
+        return result;
+    }
+    private TreeNode getMap(TreeNode root){
+        if(root==null) return root;
+        getMap(root.left);
+        map.put(root.val,map.getOrDefault(root.val,0)+1);
+        getMap(root.right);
+        return root;
+    }
+}
