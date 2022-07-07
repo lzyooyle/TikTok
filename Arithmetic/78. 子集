@@ -1,0 +1,21 @@
+class Solution {
+    List<List<Integer>> list = new ArrayList<>();
+    List<Integer> sub = new ArrayList<>();
+    public List<List<Integer>> subsets(int[] nums) {
+        Arrays.sort(nums);
+        list.add(new ArrayList<>(sub));
+        subList(nums,0);
+        return list;
+    }
+    private void subList(int[] nums,int start){
+        if(sub.size()>0){
+            list.add(new ArrayList<>(sub));
+            //return;
+        }
+        for(int i = start; i<nums.length; i++){
+            sub.add(nums[i]);
+            subList(nums,i+1);
+            sub.remove(sub.size()-1);
+        }
+    }
+}
