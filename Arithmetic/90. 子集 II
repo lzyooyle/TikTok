@@ -1,0 +1,27 @@
+class Solution {
+    List<List<Integer>> list = new ArrayList<>();
+    List<Integer> sub = new ArrayList<>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        list.add(sub);
+        boolean[] isFlag = new boolean[nums.length];
+        sub(nums,0,isFlag);
+        return list;
+    }
+    private void sub(int[] nums,int startIndex,boolean[] isFlag){        
+        if(sub.size()>0){
+            //System.out.println(list);
+            list.add(new ArrayList<>(sub));
+        }
+        for(int i = startIndex; i < nums.length; i++){
+            if(i>0 && nums[i-1]==nums[i] && !isFlag[i-1]){
+                continue;
+            }
+            isFlag[i]=true;
+            sub.add(nums[i]);
+            sub(nums,i+1,isFlag);
+            isFlag[i]=false;
+            sub.remove(sub.size()-1);
+        }
+    }
+}
