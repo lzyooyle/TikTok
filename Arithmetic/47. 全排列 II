@@ -1,0 +1,26 @@
+class Solution {
+    List<List<Integer>> list=new ArrayList<>();
+    List<Integer> sub = new ArrayList<>();
+    boolean[] isFlag;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        isFlag = new boolean[nums.length];
+        find(nums);
+        return list;
+    }
+    private void find(int[] nums){
+        if(nums.length==sub.size() && !list.contains(sub)){            
+            list.add(new ArrayList<>(sub));
+            return;
+        }
+        for(int i = 0; i <nums.length; i++){
+            if(isFlag[i]){
+                continue;
+            }
+            sub.add(nums[i]);
+            isFlag[i]=true;
+            find(nums);
+            sub.remove(sub.size()-1);
+            isFlag[i]=false;
+        }
+    }
+}
