@@ -1,0 +1,41 @@
+class Solution {
+    public int maxProfit(int[] prices) {   
+        int left=0,right=prices.length,min=prices[left],max=prices[right-1],plus=0;        
+        while(left<=right){   
+            left++;
+            right--;
+            if(left>right){
+                break;
+            }            
+            if(min>prices[left]){
+                min=prices[left];
+            }
+            if(max<prices[right]){
+                max=prices[right];
+            }            
+        }
+        if(max>min){
+            plus=max-min;
+        }
+        int total=0;
+        for(int i =1; i <prices.length;i++){
+            if(i==prices.length){
+                break;
+            }
+            if(prices[i]>prices[i-1]){
+                int temp=prices[i];
+                int c=0,j=i;
+                while((c= ++j)<prices.length && prices[c]>temp){    
+                    temp=prices[c];
+
+                }
+                total+=temp-prices[i-1];    
+                if(temp>prices[i]){
+                    i=c-1;
+                }
+                i++;
+            }
+        }
+        return Math.max(plus,total);
+    }
+}
