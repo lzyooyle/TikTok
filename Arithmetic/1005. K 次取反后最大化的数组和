@@ -1,0 +1,28 @@
+class Solution {
+    public int largestSumAfterKNegations(int[] nums, int k) {
+        Arrays.sort(nums);
+        int total=0,j=0,min=101;
+        boolean flag=true;        
+        for(int i =0;i<nums.length;i++){
+            int num = nums[i];
+            //System.out.println(Arrays.toString(nums));
+            if(num<0 && k>0){
+                total-=num;
+                min=Math.min(min,Math.abs(num));
+                k--;                
+            }else{
+                if(flag){
+                    j=i;
+                    flag=false;
+                }
+                total+=num;
+            }            
+        }
+        System.out.println(k+"::"+nums[j]+"::"+min);
+        if(k%2==1){
+            min=Math.min(min,Math.abs(nums[j]));
+            total-=min*2;
+        }
+        return total;
+    }
+}
