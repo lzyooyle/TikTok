@@ -1,0 +1,31 @@
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int total=0,index=0,plus=0,result=0;
+        boolean flag = false;
+        int[] oil = new int[gas.length];
+        for(int i =0;i<gas.length;i++){
+            oil[i]=gas[i]-cost[i];
+            if(oil[i]<0) index=i;
+            total+=oil[i];
+        }
+        if(total<0) return -1;
+        if(index==gas.length-1){
+            result=0;
+        }else{
+            result=index+1;
+        }
+        int count=gas.length;
+        for(int j =result;j<gas.length && count-->0;j++){
+            plus+=oil[j];
+            if(j==gas.length-1) j=-1;
+            if(plus<0){
+                plus=0;
+                flag=true;
+            }
+            if(flag && plus>0){
+                return j;
+            }
+        }
+        return result;
+    }
+}
