@@ -1,0 +1,36 @@
+class Solution {
+    public boolean lemonadeChange(int[] bills) {
+        List<Integer> list = new ArrayList<>();
+        for(int num:bills){
+            int plus=num-5;
+            switch(plus){
+                case 0:
+                    list.add(5);
+                    break;
+                case 5:
+                    if(list.contains(5)){
+                        list.remove(new Integer(5));
+                        list.add(10);                        
+                    }else{
+                        return false;
+                    }
+                    break;
+                case 15:
+                    if(list.contains(5) && list.contains(10)){
+                        list.remove(new Integer(5));
+                        list.remove(new Integer(10));
+                        list.add(20);
+                    }else if(Collections.frequency(list,5)>=3){
+                        list.remove(new Integer(5));
+                        list.remove(new Integer(5));
+                        list.remove(new Integer(5));                        
+                        list.add(20);
+                    }else{
+                        return false;
+                    }
+                    break;
+            }            
+        }
+        return true;
+    }
+}
