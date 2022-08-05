@@ -1,0 +1,27 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if(intervals.length==1) return intervals;
+        Arrays.sort(intervals,(a,b)->Integer.compare(a[0],b[0]));
+        int left=intervals[0][0],right=intervals[0][1],count=1;
+        Map<Integer,Integer> map=new HashMap<>();
+        map.put(left,right);
+        for(int i = 1; i<intervals.length;i++){
+            if(intervals[i][0]<=right){
+                right=Math.max(right,intervals[i][1]);
+            }else{
+                left=intervals[i][0];
+                right=intervals[i][1];
+                count++;
+            }
+            map.put(left,right); 
+        }
+        int[][] arr = new int[count][2];
+        int init=0;
+        for(Map.Entry<Integer,Integer> result:map.entrySet()){
+            arr[init][0]=result.getKey();
+            arr[init][1]=result.getValue();
+            init++;
+        }
+        return arr;
+    }
+}
