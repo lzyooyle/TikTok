@@ -1,0 +1,35 @@
+class Solution {
+    public int monotoneIncreasingDigits(int n) {
+        int len=(n+"").length(),temp=1;
+        boolean flag=true;
+        if(len==1) return n;
+        StringBuilder builder=new StringBuilder();
+        Map<Integer,Integer> map=new HashMap<>();
+        for(int i = 1; i<len;i++){
+            int left=Integer.parseInt((n+"").charAt(i-1)+"");
+            int right=Integer.parseInt((n+"").charAt(i)+"");
+            map.put(left,map.getOrDefault(left,0)+1);
+            if(left>right){
+                int wei=len-i;
+                while(wei-->0){
+                    temp*=10;
+                }
+                while(map.get(left)>1){
+                    temp*=10;
+                    builder.deleteCharAt(builder.length()-1);
+                    map.put(left,map.getOrDefault(left,0)-1);                    
+                }
+                temp=left*temp-1;
+                builder.append(temp);
+                System.out.println(builder);
+                flag=false;
+                break;
+            }
+            builder.append((n+"").charAt(i-1));
+        }
+        if(flag){
+            return n;
+        }
+        return Integer.parseInt(builder.toString());
+    }
+}
