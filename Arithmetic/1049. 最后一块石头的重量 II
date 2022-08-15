@@ -1,0 +1,17 @@
+class Solution {
+    public int lastStoneWeightII(int[] stones) {
+        int total=0,n=stones.length;
+        for(int stone:stones){
+            total+=stone;
+        }
+        int target=total/2;
+        int[] nums = new int[target+1];
+        for(int i=0;i<n;i++){
+            for(int j=target;j>=stones[i];j--){
+                nums[j]=Math.max(nums[j],nums[j-stones[i]]+stones[i]);
+            }
+        }
+        System.out.println(nums[target]);
+        return (total-nums[target])-nums[target];
+    }
+}
