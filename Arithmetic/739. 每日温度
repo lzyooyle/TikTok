@@ -13,3 +13,21 @@ class Solution {
         return dp;
     }
 }
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        int[] dp=new int[temperatures.length];
+        int len=temperatures.length;
+        for(int start=0,i=1;i<len;i++){
+            if(temperatures[i]>temperatures[start]){
+               dp[start]=i-start;
+               start++;
+               i=start;
+            }
+            if(i==len-1 && i-start>0){
+                start++;
+                i=start;
+            }
+        }
+        return dp;
+    }
+}
