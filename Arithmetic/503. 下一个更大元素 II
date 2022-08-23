@@ -1,0 +1,21 @@
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int[] dp=new int[nums.length];
+        Arrays.fill(dp,-1);
+        boolean flag=true;
+        for(int i=0;i<nums.length;i++){
+            for(int j=i;j<nums.length;j++){
+                if(nums[j]>nums[i]){
+                    dp[i]=nums[j];
+                    break;
+                }
+                if(j==nums.length-1 && flag){
+                    j=-1;
+                    flag=false;
+                }                
+            }
+            flag=true;
+        }
+        return dp;
+    }
+}
