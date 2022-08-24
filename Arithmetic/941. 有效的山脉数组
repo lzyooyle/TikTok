@@ -15,3 +15,21 @@ class Solution {
         return incre==true && decre==true?true:false;
     }
 }
+class Solution {
+    public boolean validMountainArray(int[] arr) {
+        if(arr.length<3) return false;
+        boolean incre=false;
+        int add=0,plus=0;
+        for(int i=1;i<arr.length;i++){
+            if(arr[i]==arr[i-1]) return false;
+            if(arr[i]>arr[i-1]){
+                if(plus<0) return false;
+                add++;
+            }else if(arr[i]<arr[i-1]){
+                if(add==0) return false;
+                plus--;
+            }
+        }
+        return add>0 && plus<0?true:false;
+    }
+}
