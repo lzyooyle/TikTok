@@ -1,0 +1,17 @@
+class Solution {
+    public boolean validMountainArray(int[] arr) {
+        if(arr.length<3) return false;
+        boolean incre=false,decre=false;
+        for(int i=1;i<arr.length;i++){
+            if(arr[i]==arr[i-1]) return false;
+            if(arr[i]>arr[i-1]){
+                decre=true;
+                if(incre) return false;//如果增长结束了，再有增长则返回false
+            }else if(arr[i]<arr[i-1]){
+                incre=true;
+                if(!decre) return false; //如果一上来就小，直接判断false
+            }
+        }
+        return incre==true && decre==true?true:false;
+    }
+}
