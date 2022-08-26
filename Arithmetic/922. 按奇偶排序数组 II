@@ -1,0 +1,16 @@
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        Deque<Integer> deque=new LinkedList<>();
+        for(int num:nums){
+            if(num%2==1) deque.addFirst(num);
+            if(num%2==0) deque.addLast(num);
+        }
+        int len=nums.length;
+        int[] dp=new int[len];
+        for(int i=0;i<len;i++){
+            if(i%2==1) dp[i]=deque.removeFirst();
+            if(i%2==0) dp[i]=deque.removeLast();
+        }
+        return dp;
+    }
+}
