@@ -1,0 +1,137 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.*;
+public class Main {
+public static void main(String[] args) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[] nums=new int[Integer.parseInt(br.readLine())];
+    String accept=br.readLine();
+    String[] strs=accept.split(" ");
+    for(int i=0;i<nums.length;i++){
+        nums[i]=Integer.parseInt(strs[i]);
+    }   
+    int len=nums.length,max=0,temp=0,result=0;
+    Map<Integer,Integer> map=new HashMap<>();
+    map.put(len-1,1); //首先将最后一个数据放入map，以索引为key
+    for(int i=len-2;i>=0;i--){ //从后往前，遍历后一个比前个大的
+        for(int j=i+1;j<len;j++){ //从某个点开始，往后
+            temp=map.get(j); //提前获取后一个数的value值
+            if(nums[i]<nums[j]){ //如果找到了比当前节点大的数字
+                if(temp>max){ //如果他的value值比最大值还要大
+                //System.out.println(nums[i]+"::"+nums[j]+"::"+temp+"::"+max);
+                    max=temp; //赋值
+                    map.put(i,max+1); //计数+1
+                    //System.out.println(map);
+                }
+            }else{
+                if(map.get(i)==null){ //如果当前节点的value值一直为空
+                    map.put(i,1); //默认赋值为1
+                    //System.out.println(nums[i]+":::"+nums[j]+"::"+temp+"::"+max);                    
+                }
+            }
+        }
+        result=Math.max(result,max); //获取最大值
+        temp=0;
+        max=0;
+    }
+    System.out.println(result+1);   
+    }  
+}
+扩展思路
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.*;
+public class Main {
+public static void main(String[] args) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[] nums=new int[Integer.parseInt(br.readLine())];
+    String accept=br.readLine();
+    String[] strs=accept.split(" ");
+    for(int i=0;i<nums.length;i++){
+        nums[i]=Integer.parseInt(strs[i]);
+        strs[i]+="-"+i;
+    }   
+    //System.out.println(Arrays.toString(strs));
+    Deque<Integer> deque=new LinkedList<>();
+    int count=0,max=0,len=nums.length;
+    for(int i=0;i<len;i++){
+        for(int j=i+1;j<len;j++){
+            int left=Integer.parseInt(strs[i].split("-")[0]);
+            int right=Integer.parseInt(strs[j].split("-")[0]);            
+            if(left>right){
+                String s=strs[i];
+                strs[i]=strs[j];
+                strs[j]=s;
+            }
+        }
+    }
+    for(int i=0;i<len;i++){
+        int index=Integer.parseInt(strs[i].split("-")[1]);
+        if(Math.abs(index-i)>=len/2){
+            nums[index]=0;
+            count++;
+        }
+    }
+    int[] arr = new int[len-count];    
+    for(int i=0,j=0;i<len;i++){
+        if(nums[i]==0) continue;
+        arr[j++]=nums[i];
+    }
+    count=0;
+    for(int i=1;i<arr.length;i++){
+        if(arr[i]>arr[i-1]) break;
+        arr[i-1]=0;
+        count++;
+    }
+    for(int i=arr.length-2;i>=0;i--){
+        if(arr[i]<arr[i+1]) break;
+        arr[i+1]=0;
+        count++;
+    }
+    nums=new int[arr.length-count];
+    for(int i=0,j=0;i<arr.length;i++){
+        if(arr[i]==0) continue;
+        nums[j++]=arr[i];
+    }
+    System.out.println(Arrays.toString(nums));    
+    for(int i=0;i<nums.length-max;i++){
+        int temp=nums[i];
+        deque.addLast(temp);
+        for(int j=i+1;j<nums.length;j++){
+            if(deque.isEmpty()){
+                if(nums[j]>nums[i]) deque.addLast(nums[j]);                   
+            }else{
+                if(nums[j]>deque.peekLast()){
+                    temp=deque.peekLast();
+                    deque.addLast(nums[j]);
+                }else if(nums[j]<deque.peekLast() && nums[j]>temp){
+                    deque.removeLast();                   
+                    deque.addLast(nums[j]);
+                }else if(nums[j]<deque.peekLast() && nums[j]<temp && nums[j]>nums[i]){
+                    int c=0,s=0;
+                    for(int num:deque){
+                        if(nums[j]>num) {
+                            c++;
+                            s+=num;
+                        }
+            
+                    }
+//                     if(nums[i]==13) {
+//                         System.out.println(nums[j]+"::"+deque.size()+"::"+c);
+//                     }
+                    if((deque.size()-c)*2>(nums.length-j) || Math.abs(s-nums[j])<10 && deque.size()>2) continue;
+                    max=Math.max(max,deque.size());
+                    while(nums[j]<deque.peekLast()) deque.removeLast();
+                    deque.addLast(nums[j]);
+                }
+            }
+        }
+        System.out.println(nums[i]+"::"+deque);
+        max=Math.max(max,deque.size());
+        while(!deque.isEmpty()) deque.remove();
+    }
+    System.out.println(max);   
+    }  
+}
