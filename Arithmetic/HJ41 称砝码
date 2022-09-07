@@ -1,0 +1,33 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+
+public class Main {
+    static Set<Integer> set = new CopyOnWriteArraySet<>();
+    static int sum=0;
+    public static void main(String[] args) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        int num = Integer.parseInt(reader.readLine()),init=0,total=0;
+        String[] weight = reader.readLine().split(" ");
+        String[] nums = reader.readLine().split(" ");
+        set.add(0); //首先将0加进来，这题用回溯算法不行的
+        for(int i=0;i<nums.length;i++){
+            int c=Integer.parseInt(nums[i]); //将元素打散，一个一个收拾，而不是拼数组
+            while(c-->0){                
+                traversal(Integer.parseInt(weight[i])); //这个有点像递归
+            }
+        }     
+        System.out.println(set.size());       
+    }
+    private static void traversal(int num){
+        //System.out.println(list+"::"+num);      
+        for(int e:set){ //将现有的每一个元素都加上新元素
+            int temp=e+num;
+            set.add(temp);   
+        }
+    }
+}
