@@ -1,0 +1,25 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int num = Integer.parseInt(sc.next());
+        int plate = Integer.parseInt(sc.next()),init=1; 
+        int[] nums;
+        if(num>=plate){ //如果苹果数大于等于盘子的数量
+            nums=new int[plate]; //物品数组容量为盘子的数量            
+        }else{
+            nums=new int[num]; //物品数组容量为苹果的数量
+        }
+        int len=nums.length;
+        for(int i=0;i<len;i++) nums[i]=init++; //对物品数组赋值
+        int[] dp=new int[num+1];
+        dp[0]=1;
+        for(int i=0;i<len;i++){ //遍历物品数
+            for(int j=nums[i];j<=num;j++){ //遍历背包数
+                dp[j]+=dp[j-nums[i]]; //求和
+            }
+        }
+        System.out.println(dp[num]);
+    }
+
+}
