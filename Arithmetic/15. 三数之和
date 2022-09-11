@@ -38,3 +38,37 @@ class Solution {
     
     }
 }
+import java.util.*;
+import java.util.stream.Collectors;
+public class Solution {
+    public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
+        Arrays.sort(num); //给数组排序
+        int len=num.length; //获取数组长度
+        Map<Integer,Integer> map=new HashMap<>(); //创建map
+        ArrayList<ArrayList<Integer>> alley = new ArrayList<>(); //创建返回List
+        if(len<3) return alley; //判断如果数组长度小于3，则返回list
+        for(int c:num){ //遍历数组，存入map
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+        for(int i=0;i<len && num[i]<=0;i++){ //遍历小于等于0的元素
+            if(i+1<len && num[i]==num[i+1]) continue; //如果元素相同，则继续
+            if(map.get(num[i])<=0) continue; //如果获取元素的值，小于等于0，则继续
+            map.put(num[i],map.get(num[i])-1);      
+            for(int j=len-1,count=-101;j>=i && num[j]>=0;j--){
+                if(num[j]==count) continue; //如果元素相等，则继续
+                int plus=0-num[i]-num[j]; //求差值
+                map.put(num[j],map.get(num[j])-1); 
+                if(map.getOrDefault(plus,0)>0){ //如果差值大于0
+                    count=num[j]; //赋值
+                    //System.out.println(num[i]+"::"+num[j]+"::"+plus+"::"+map);
+                    Integer[] temp=new Integer[]{num[i],num[j],plus}; //创建数组
+                    Arrays.sort(temp); //排序
+                    alley.add(new ArrayList<>(Arrays.asList(temp))); //添加list
+                }
+               map.put(num[j],map.get(num[j])+1);            
+            }
+        }
+        alley=new ArrayList<>(new LinkedHashSet<>(alley)); //去重
+        return alley; //返回list
+    }
+}
