@@ -1,2 +1,4 @@
 JAVA核心：JAVA，JVM，并发编程，集合，设计模式
-框架：SpringBoot，SpringMVC，Spring，MyBatis，Redis，RabbitMQ
+框架：SpringBoot，SpringMVC，Spring，MyBatis
+微服务：SpringCloud
+数据库：Mysql，Redis
