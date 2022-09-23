@@ -4,3 +4,4 @@ JAVA核心：JAVA，JVM，并发编程，集合，设计模式
 数据库：Mysql，Redis
 中间件：RabbitMQ
 分布式：分布式id，分布式锁，分布式链路追踪，分布式一体监控
+nginx，tomcat，操作系统，网络，计算机组成原理，io，docker，k8s
