@@ -1,0 +1,35 @@
+class Solution {
+    public boolean isLongPressedName(String name, String typed) {     
+        Deque<Character> old=new LinkedList<>();
+        for(Character c:name.toCharArray()) old.addLast(c);
+        Deque<Character> news=new LinkedList<>();
+        for(Character c:typed.toCharArray()) news.addLast(c);
+        int om=1,nm=0;
+        while(!old.isEmpty()){
+            char c=old.pop();
+            while(!old.isEmpty() && c==old.getFirst()){
+                old.pop();
+                om++;
+            }
+            while(!news.isEmpty()){
+                char d=news.getFirst();
+                if(c==d){
+                    news.pop();
+                    nm++;
+                }else{
+                    break;
+                }
+            }
+            System.out.println(om+"::"+nm);
+            if(om>nm){
+                return false;                
+            }else{
+                om=1;
+                nm=0;
+            }
+            if(!old.isEmpty() && !news.isEmpty() && old.getFirst()!=news.getFirst()) break;
+        }
+        System.out.println(news.size());
+        return news.isEmpty()?true:false;
+        }
+}        
