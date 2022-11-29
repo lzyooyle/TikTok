@@ -5,5 +5,7 @@
 + 核心是InvocationHandler接口和代理类，如果目标类没有实现这个接口，Spring AOP会选择使用CGLIB作为目标类的动态代理
 + 3.CGLIB(代码生成库)是一个代码生成类库，可以在运行时动态生成一个类的子类，注意CGLIB需要通过继承来实现动态代理，所以如果一个类被标注了final
 + 它就不能使用CGLIB动态代理了
++ 简单版：
++ 1.如果这个对象被代理了，要实现一个接口，Spring AOP使用JDK Proxy创建了一个代理对象
 ## SpringBoot和SpringCloud的区别
 + SpringBoot是快速开发的Spring框架，SpringCloud是完整的微服务框架
