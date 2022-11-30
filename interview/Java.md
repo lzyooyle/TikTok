@@ -1,3 +1,6 @@
+## 4.7 String、StringBuffer和StringBuilder的区别
++ 1.String的长度不可变，StringBuffer和StringBuilder的长度是可变的
++ 2.StringBuilder是线程不安全的，StringBuffer是线程安全的
 ## 4.6 sleep和wait的区别
 + 1.sleep方法是Thread类的静态方法，wait方法是Object类的一个方法
 + 2.sleep方法在指定的时间内，会造成当前线程暂停执行，释放CPU交给另一个线程，但是它的监控状态会保留，当指定的时间结束后，它会自动
