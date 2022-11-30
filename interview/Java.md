@@ -14,6 +14,11 @@
 + 1.SerialNew垃圾回收器：最早的最基础的回收期，单线层垃圾回收器，当回收垃圾的时候需要STW
 + 2.ParNew垃圾回收器：SerialNew的多线程版本，在单核cpu的场景下，效率没有SerialNew高，它现在只工作在cms上
 + 3.Parallel Scavenge垃圾回收器：一个多线程垃圾回收器，和ParNew类似，它也采用复制算法，但是不想ParNew，Parallel Scavenge关注高吞吐量
++ 老年代：
++ 1.SerialOld垃圾回收器：较早版本的垃圾回收器，一个单线程垃圾回收期，使用标记整理算法
++ 2.Parallel Old垃圾回收算法：一个较早版本的并行收集，一个多线程收集器，使用标记清除整理算法
++ 3.CMS收集器：并发的标记交换，目标是为了获得低停顿，实现基于标记清除算法
++ 4.G1垃圾回收器：将堆划分为多个大小相等的区域，新生代和老年代没有物理隔离，在多核cpu和大内存的场景下，提供更高的性能，新生代使用复制算法，老年代使用标记压缩算法
 ## 4.7 String、StringBuffer和StringBuilder的区别
 + 1.String的长度不可变，StringBuffer和StringBuilder的长度是可变的
 + 2.StringBuilder是线程不安全的，StringBuffer是线程安全的
