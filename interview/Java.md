@@ -9,6 +9,11 @@
 + 4.分代收集算法：没有什么新的思想，根据对象的生存周期，把内存划分为几块，一般来说，java堆被划分成年轻代和老年代，所以你可以根据每个代的特性
 + 选择合适的垃圾收集算法，在新生代中，可以看到大量的对象死去，每一次垃圾回收的时候，只有少数的幸存者对象存活，所以选择复制算法，只需要复制少数的对象
 + 然而在老年代，因为对象的存活率较高，没有额外的空间分配，标记清除和标记整理算法，可以被用来回收
++ 垃圾收集器：
++ 新生代：
++ 1.SerialNew垃圾回收器：最早的最基础的回收期，单线层垃圾回收器，当回收垃圾的时候需要STW
++ 2.ParNew垃圾回收器：SerialNew的多线程版本，在单核cpu的场景下，效率没有SerialNew高，它现在只工作在cms上
++ 3.Parallel Scavenge垃圾回收器：一个多线程垃圾回收器，和ParNew类似，它也采用复制算法，但是不想ParNew，Parallel Scavenge关注高吞吐量
 ## 4.7 String、StringBuffer和StringBuilder的区别
 + 1.String的长度不可变，StringBuffer和StringBuilder的长度是可变的
 + 2.StringBuilder是线程不安全的，StringBuffer是线程安全的
