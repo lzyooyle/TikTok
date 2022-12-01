@@ -1,3 +1,9 @@
+## 4.10 ConcurrentHashMap 和 Hashtable 的区别
++ 1.出现版本不同：HashTable自从jdk1.0和jdk1.2就已经实现map接口了，作为集合的框架，ConcurrentHashMap直到jdk1.5才被引进，因为它们的时代不同，后出现的
++ 要比前面出现的做了优化，所以它们的实现和性能上都有很大的不同
++ 2.线程安全的实现方式不同：原则上说，HashTable的并发安全的获得，是通过synchronized关键字实现的，HashTable几乎每个方法都加了synchronized关键字
++ 因此HashTable是线程安全的，ConcurrentHashMap实现原理和HashTable有本质得不同，它得线程安全是使用了CAS+synchronized+Node，和HashTable完全使用
++ synchronied完全不同
 ## 4.9 JVM内存结构
 + 堆：线程共享的，所有的对象实例和数组都分配在堆区，收集器主要管理的对象
 + 方法区：线程共享的，保存了类信息，常量，静态变量，和即时编译的代码
