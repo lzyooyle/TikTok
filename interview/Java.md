@@ -4,6 +4,15 @@
 + 2.线程安全的实现方式不同：原则上说，HashTable的并发安全的获得，是通过synchronized关键字实现的，HashTable几乎每个方法都加了synchronized关键字
 + 因此HashTable是线程安全的，ConcurrentHashMap实现原理和HashTable有本质得不同，它得线程安全是使用了CAS+synchronized+Node，和HashTable完全使用
 + synchronied完全不同
++ 3.性能不同：因为它们实现线程安全得方式不同，它们得性能也不同，当线程增加得时候，HashTable得性能会急剧下降，因为每一次修改需要锁住整个对象
++ 其它线程不能在此期间操作，还会带来额外得上下文切换，所以吞吐量不如单线程好，对于ConcurrentHashMap，锁只锁住一部分，不是全部
++ 所以多线程下得吞吐量，通常要好于单线程，换句话说ConcurrentHashMap比HashTable更高效
++ 4.在迭代期间修改得不同：HashTable（包括HashMap）不允许在迭代得时候，修改内容，否则会抛出ConcurrentModificationException，它得规则是检测modCount变量
++ 迭代器中next()方法，首先检查modCount是否和expectedModCount相等，expectedModCount是随着迭代器产生而产生得，不会改变，表示HashTable中被改变了几次，
++ modCount在每次修改得时候会被改变，修改包括addEntry()，remove()，rehash()，如果我们在迭代HashTable得时候进行修改操作，它也会影响modCount
++ 结果下一次迭代得时候，会被察觉，会发现modCount不等于expectedModCount会抛出ConcurrentModificationException
++ 所以对于HashTable来说，它不允许在迭代时候修改内容，而CouncurrentHashMap即使在迭代得时候修改内容，也不会抛出异常，如果我们有一个并发得场景
++ 使用ConcurrentHashMap更合适，HashTable不再推荐使用
 ## 4.9 JVM内存结构
 + 堆：线程共享的，所有的对象实例和数组都分配在堆区，收集器主要管理的对象
 + 方法区：线程共享的，保存了类信息，常量，静态变量，和即时编译的代码
