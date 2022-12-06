@@ -1,3 +1,8 @@
+## 5.4 Spring Bean的注入方式
++ 当你在一个bean中，调用另一个bean的时候，需要依赖注入
++ @Configuration:标注这个类是一个配置类
++ @ComponentScan("包")：指定哪个包，就扫描识别这个包下的注解
++ @Autowired：Bean的自动装配，可以标注在类的属性，方法，构造器上
 ## 5.3 Spring中Bean的生命周期是怎样的
 + 1.通过构造器创建一个bean实例
 + 2.为bean的属性设置值和引用其它bean
