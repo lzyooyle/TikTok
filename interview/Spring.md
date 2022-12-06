@@ -4,6 +4,8 @@
 + @ComponentScan("包")：指定哪个包，就扫描识别这个包下的注解
 + @Autowired：Bean的自动装配，可以标注在类的属性，方法，构造器上
 + @Component：将一个普通类标注为bean，将其加入容器，是一个单例
++ @Bean：定义一个Bean对象，加入到Spring容器中
++ @Order(数字)：容器加载bean的优先级，数字越小，优先级越高
 ## 5.3 Spring中Bean的生命周期是怎样的
 + 1.通过构造器创建一个bean实例
 + 2.为bean的属性设置值和引用其它bean
