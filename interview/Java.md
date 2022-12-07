@@ -1,3 +1,8 @@
+## 4.16 ArrayList和LinkedList的区别
++ 1.ArrayList是基于数组实现的，LinkedList是基于双向链表实现的
++ 2.对于随机查询操作，ArrayList要优于LinkedList
++ 3.对于插入和删除操作，LinkedList要由于ArrayList
++ 4.LinkedList要比ArrayList占用更多的内存，因为LinkedList的节点不仅要存储数据，还要存储两个引用，一个指向前面的元素，一个指向后面的元素
 ## 4.15 乐观锁和悲观锁的区别
 + 对多线程操作相同的数据，悲观锁认为使用线程的时候，一定有另一个线程修改数据，所以当获得数据的时候首先把数据锁住
 + 确保数据不被其它线程修改，在Java中，synchronized关键字和Lock类的实现都是悲观锁
