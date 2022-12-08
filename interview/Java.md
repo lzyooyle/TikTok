@@ -1,3 +1,9 @@
+## 4.17 volatile和synchronized的区别
++ 1.volatile本质上是告诉jvm，工作内存中的值是不确定的，需要从主内存中读取，synchronized锁定了变量
++ 只能是当前线程可以访问，其它线程被阻塞了
++ 2.volatile只能用在变量级别，synchronized可以用在变量，方法，类级别上
++ 3.volatile改变变量只能获得可见性，但是不能保证原子性，synchronized保证修改的可见性和原子性
++ 4.volatile不会阻塞线程，synchronized会阻塞线程
 ## 4.16 ArrayList和LinkedList的区别
 + 1.ArrayList是基于数组实现的，LinkedList是基于双向链表实现的
 + 2.对于随机查询操作，ArrayList要优于LinkedList
