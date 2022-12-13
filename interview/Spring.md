@@ -1,3 +1,13 @@
+## 5.5 Spring 和 SpringBoot 之间到底有啥区别
++ Spring是什么，Spring对每个人都很熟悉了，简而言之：Spring框架为开发Java应用，提供了广泛的基础性的支持，它包含了很多不错的特性像依赖注入
++ 和开箱即用模块，比如：SpringJDBC，SpringMVC，SpringSecurity，SpringAOP，SpringTest这些模块缩短了开发的时间，提高了开发效率
++ 举个例子：早期的JavaWeb开发，我们需要写很多代码，插入记录到数据库，通过SpringJDBC的JDBCTemplate模块，我们只需要几行代码
++ 什么是SpringBoot，SpringBoot是基于Spring框架的扩展，消除了Spring应用中XML的设置，提供了更快，更有效的方式，一些SpringBoot的特性：
++ 1.创建独立的Spring应用
++ 2.内嵌了Tomcat，Jetty，Undertow容器，不再需要部署war包文件
++ 3.提供了场景简化了构建配置，自动配置Spring应用
++ 4.提供了生产指标，比如健壮性检查，外部配置
++ 5.无代码生成和不需要XML配置
 ## 5.4 Spring Bean的注入方式
 + 当你在一个bean中，调用另一个bean的时候，需要依赖注入
 + @Configuration:标注这个类是一个配置类
