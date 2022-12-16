@@ -8,6 +8,7 @@
 + 当我们想创建一个Bean的时候，我们可以直接从IOC容器中获取（举个例子：通过ApplicationContext.getBean()方法）替代用new关键字创建对象
 + IOC最大的改变不是代码层面的，而是主从换位的思想层面的，在Spring应用中，IOC容器是掌握主动权的，调用者变成了被动的一方
 + 等待IOC容器创建它需要的bean，这一过程叫做Spring的控制反转，因为它反转了调用者创建对象的顺序，通过IOC容器来创建对象
++ 在面向对象中，对象之间是有依赖关系的，简单来说，在一个对象中调用另一个对象，就需要用到依赖注入
 ## 5.5 Spring 和 SpringBoot 之间到底有啥区别
 + Spring是什么，Spring对每个人都很熟悉了，简而言之：Spring框架为开发Java应用，提供了广泛的基础性的支持，它包含了很多不错的特性像依赖注入
 + 和开箱即用模块，比如：SpringJDBC，SpringMVC，SpringSecurity，SpringAOP，SpringTest这些模块缩短了开发的时间，提高了开发效率
