@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>呼吸训练器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes breathe {
+            0%, 100% { width: 100px; }
+            50% { width: 300px; }
+        }
+        .breathe-animation {
+            animation: breathe 4s infinite;
+        }
+        .control-panel {
+            transition: all 0.3s ease;
+        }
+        .timer-display {
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-6 md:p-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">呼吸训练器</h1>
+            <p class="text-gray-600">跟随动画节奏，调节呼吸频率</p>
+        </div>
+
+        <!-- 呼吸动画区域 -->
+        <div class="flex justify-center items-center mb-10 py-12 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl">
+            <div class="relative h-16 flex items-center justify-center">
+                <div id="breathBar" class="h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full shadow-lg" style="width: 100px;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span id="phaseText" class="text-white font-semibold text-lg">准备</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 计时器显示区域 -->
+        <div class="flex justify-center mb-6">
+            <div class="bg-gray-800 text-green-400 p-4 rounded-lg font-mono timer-display">
+                <span id="minutes">00</span>:<span id="seconds">00</span>.<span id="milliseconds">00</span>
+            </div>
+        </div>
+
+        <!-- 控制面板 -->
+        <div class="control-panel bg-gray-50 rounded-xl p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">
+                        <i class="fas fa-clock mr-2"></i>呼吸周期 (秒)
+                    </label>
+                    <div class="flex items-center">
+                        <input type="range" id="cycleTime" min="2" max="10" value="4" 
+                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <span id="cycleTimeValue" class="ml-4 text-lg font-semibold text-gray-700 w-10">4</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">
+                        <i class="fas fa-cog mr-2"></i>控制面板
+                    </label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button id="startBtn" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition">
+                            <i class="fas fa-play mr-2"></i>开始
+                        </button>
+                        <button id="pauseBtn" class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition">
+                            <i class="fas fa-pause mr-2"></i>暂停
+                        </button>
+                        <button id="resetBtn" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition">
+                            <i class="fas fa-redo mr-2"></i>重置
+                        </button>
+                        <button id="timerResetBtn" class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-lg transition">
+                            <i class="fas fa-stopwatch mr-2"></i>计时重置
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 说明信息 -->
+        <div class="text-center text-gray-600 text-sm">
+            <p><i class="fas fa-info-circle mr-2"></i>调整滑块设置呼吸周期，点击按钮控制动画和计时器</p>
+        </div>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const breathBar = document.getElementById('breathBar');
+        const phaseText = document.getElementById('phaseText');
+        const cycleTimeSlider = document.getElementById('cycleTime');
+        const cycleTimeValue = document.getElementById('cycleTimeValue');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const timerResetBtn = document.getElementById('timerResetBtn');
+        
+        // 计时器相关元素
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+        const millisecondsElement = document.getElementById('milliseconds');
+        
+        // 初始化变量
+        let animationInterval;
+        let isAnimating = false;
+        let cycleTime = 4; // 默认周期4秒
+        
+        // 计时器变量
+        let startTime;
+        let elapsedTime = 0;
+        let timerInterval;
+        let isRunning = false;
+        
+        // 更新周期显示
+        cycleTimeSlider.addEventListener('input', function() {
+            cycleTime = parseInt(this.value);
+            cycleTimeValue.textContent = cycleTime;
+            if (isAnimating) {
+                restartAnimation();
+            }
+        });
+        
+        // 开始动画和计时器
+        startBtn.addEventListener('click', function() {
+            if (!isAnimating) {
+                startAnimation();
+            }
+            if (!isRunning) {
+                startTimer();
+            }
+        });
+        
+        // 暂停动画和计时器
+        pauseBtn.addEventListener('click', function() {
+            pauseAnimation();
+            pauseTimer();
+        });
+        
+        // 重置动画
+        resetBtn.addEventListener('click', function() {
+            resetAnimation();
+            // 不重置计时器，除非专门点击计时重置按钮
+        });
+        
+        // 重置计时器
+        timerResetBtn.addEventListener('click', function() {
+            resetTimer();
+        });
+        
+        // 启动动画函数
+        function startAnimation() {
+            isAnimating = true;
+            // 清除任何现有的动画类
+            breathBar.classList.remove('breathe-animation');
+            // 强制重排
+            breathBar.offsetHeight;
+            // 添加新的动画类，使用当前周期时间
+            breathBar.classList.add('breathe-animation');
+            breathBar.style.animationDuration = cycleTime + 's';
+            updatePhaseText();
+        }
+        
+        // 暂停动画函数
+        function pauseAnimation() {
+            isAnimating = false;
+            breathBar.style.animationPlayState = 'paused';
+        }
+        
+        // 重置动画函数
+        function resetAnimation() {
+            isAnimating = false;
+            breathBar.classList.remove('breathe-animation');
+            breathBar.style.animation = 'none';
+            breathBar.offsetWidth; // 触发重排
+            breathBar.style.width = '100px';
+            phaseText.textContent = '准备';
+        }
+        
+        // 重新启动动画（用于调整周期后）
+        function restartAnimation() {
+            if (isAnimating) {
+                breathBar.classList.remove('breathe-animation');
+                breathBar.offsetHeight; // 触发重排
+                breathBar.classList.add('breathe-animation');
+                breathBar.style.animationDuration = cycleTime + 's';
+            }
+        }
+        
+        // 更新呼吸阶段文本
+        function updatePhaseText() {
+            if (!isAnimating) return;
+            
+            // 吸气阶段 (0-50%)
+            phaseText.textContent = '吸气';
+            phaseText.className = 'text-white font-semibold text-lg';
+            
+            // 在周期中点切换到呼气
+            setTimeout(() => {
+                if (isAnimating) {
+                    phaseText.textContent = '呼气';
+                    phaseText.className = 'text-white font-semibold text-lg';
+                }
+            }, (cycleTime * 1000) / 2);
+            
+            // 循环更新
+            if (isAnimating) {
+                setTimeout(updatePhaseText, cycleTime * 1000);
+            }
+        }
+        
+        // 计时器函数
+        function startTimer() {
+            if (!isRunning) {
+                startTime = Date.now() - elapsedTime;
+                timerInterval = setInterval(updateTimerDisplay, 10); // 每10毫秒更新一次
+                isRunning = true;
+            }
+        }
+        
+        function pauseTimer() {
+            if (isRunning) {
+                clearInterval(timerInterval);
+                isRunning = false;
+            }
+        }
+        
+        function resetTimer() {
+            pauseTimer();
+            elapsedTime = 0;
+            updateTimerDisplay();
+        }
+        
+        function updateTimerDisplay() {
+            const totalSeconds = Math.floor(elapsedTime / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const milliseconds = Math.floor((elapsedTime % 1000) / 10);
+            
+            minutesElement.textContent = minutes.toString().padStart(2, '0');
+            secondsElement.textContent = seconds.toString().padStart(2, '0');
+            millisecondsElement.textContent = milliseconds.toString().padStart(2, '0');
+        }
+        
+        // 在每次更新时计算经过的时间
+        function updateElapsedTime() {
+            if (isRunning) {
+                elapsedTime = Date.now() - startTime;
+                updateTimerDisplay();
+                requestAnimationFrame(updateElapsedTime);
+            }
+        }
+        
+        // 修改startTimer函数以使用requestAnimationFrame
+        function startTimer() {
+            if (!isRunning) {
+                startTime = Date.now() - elapsedTime;
+                isRunning = true;
+                updateElapsedTime();
+            }
+        }
+        
+        // 初始化显示
+        updateTimerDisplay();
+    </script>
+</body>
+</html>
