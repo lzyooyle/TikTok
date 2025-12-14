@@ -36,6 +36,13 @@ import java.util.concurrent.Callable;
 public class MyCallable implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
+//        sleep(long time) 让线程休眠指定的时间，单位为毫秒
+//        细节：
+//        1、哪条线程执行到这个方法，那么哪条线程就会在这里停留对应的时间
+//        2、方法的参数：就表示睡眠的时间、单位毫秒
+//        1秒 = 1000毫秒
+//        3、当时间到了之后，线程会自动醒来，继续执行下面的其它代码
+        Thread.sleep(1000);        
         int sum = 0;
         for (int i = 0; i < 100; i++) {
             sum = sum + i;
