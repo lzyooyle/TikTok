@@ -29,6 +29,14 @@ public class main {
 package com.example.demoheimaduoxiancheng.多线程;
 
 public class MyRun implements java.lang.Runnable {
+    //Thread currentThread() 获取当前线程的对象
+	//哪条线程执行到这个方法，此时获取的就是哪条线程的对象
+	//细节：
+		//当JVM虚拟机启动之后，会自动的启动多条线程
+		//其中有一条线程叫做main线程
+		//它的作用就是去调用main方法，并执行里面的代码
+		//在以前，我们写的所有的代码，其实都是运行在main线程当中
+
     @Override
     public void run() {
         //书写线程要执行的代码
